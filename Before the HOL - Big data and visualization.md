@@ -9,7 +9,7 @@ Before the hands-on lab setup guide
 </div>
 
 <div class="MCWHeader3">
-November 2019
+Feb 2020
 </div>
 
 Information in this document, including URL and other Internet Web site references, is subject to change without notice. Unless otherwise noted, the example companies, organizations, products, domain names, e-mail addresses, logos, people, places, and events depicted herein are fictitious, and no association with any real company, organization, product, domain name, e-mail address, logo, person, place or event is intended or should be inferred. Complying with all applicable copyright laws is the responsibility of the user. Without limiting the rights under copyright, no part of this document may be reproduced, stored in or introduced into a retrieval system, or transmitted in any form or by any means (electronic, mechanical, photocopying, recording, or otherwise), or for any purpose, without the express written permission of Microsoft Corporation.
@@ -34,6 +34,8 @@ Microsoft and the trademarks listed at <https://www.microsoft.com/en-us/legal/in
     - [Task 3: Create storage container](#task-3-create-storage-container)
     - [Task 4: Provision Azure Data Factory](#task-4-provision-azure-data-factory)
     - [Task 5: Download and install Power BI Desktop](#task-5-download-and-install-power-bi-desktop)
+    - [Task 6: Download Azure Storage Explorer](#task-6-download-and-install-azure-storage-explorer)
+    - [Task 7: Provision SnowFlake](#task-7-provision-snow-flake)
 
 <!-- /TOC -->
 
@@ -87,7 +89,7 @@ Azure Databricks is an Apache Spark-based analytics platform optimized for Azure
 
 ### Task 2: Create Azure Storage account
 
-Create a new Azure Storage account that will be used to store historic and scored flight and weather data sets for the lab.
+Create a new Azure Storage account that will be used to store Shopify and Magento data.
 
 1. In the [Azure Portal](https://portal.azure.com) (<https://portal.azure.com>), select **+ Create a resource**, then type "storage" into the search bar. Select **Storage account** from the results.
 
@@ -107,11 +109,18 @@ Create a new Azure Storage account that will be used to store historic and score
 
    - **Performance**: Standard
 
-   - **Account kind**: BlobStorage
+   - **Account kind**: StorageV2(general purpose v2)
 
    - **Replication**: Read-access geo-redundant storage (RA-GRS)
 
    - **Access tier**: Hot
+   
+   Navigate to Advanced Tab 
+   
+   - **Hierarchical namespace**: Enabled
+   
+
+   
 
    ![Complete the Azure storage account creation form with the options as outlined above.](media/azure-storage-create-blade.png)
 
@@ -119,7 +128,7 @@ Create a new Azure Storage account that will be used to store historic and score
 
 ### Task 3: Create storage container
 
-In this task, you will create a storage container in which you will store your flight and weather data files.
+In this task, you will create a storage container in which you will store your Magento and Shopify data files.
 
 1. From the side menu in the Azure portal, choose **Resource groups**, then enter your resource group name into the filter box, and select it from the list.
 
@@ -169,5 +178,12 @@ Create a new Azure Data Factory instance that will be used to orchestrate data t
 Power BI desktop is required to make a connection to your Azure Databricks environment when creating the Power BI dashboard.
 
 1. Download and install [Power BI Desktop](https://powerbi.microsoft.com/desktop/).
+
+
+### Task 6: Download Azure Storage Explorer
+
+Azure Storage Explorer is required to upload/ view data in Data Lake Gen 2.
+
+1. Download and install [Storage Explorer] (https://azure.microsoft.com/en-us/features/storage-explorer/).
 
 You should follow all these steps provided _before_ attending the Hands-on lab.
