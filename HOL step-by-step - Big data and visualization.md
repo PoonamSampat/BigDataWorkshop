@@ -71,7 +71,7 @@ By the end of the lab, you will be able to show an end-to-end solution, leveragi
 
 Below is a diagram of the solution architecture you will build in this lab. Please study this carefully so you understand the whole of the solution as you are working on the various components.
 
-![This is the high-level overview diagram of the end-to-end solution.](../media/SolutionArch.png 'High-level overview diagram')
+![This is the high-level overview diagram of the end-to-end solution.](./media/SolutionArch.png 'High-level overview diagram')
 
 ## Requirements
 
