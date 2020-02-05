@@ -33,18 +33,17 @@ Microsoft and the trademarks listed at https://www.microsoft.com/en-us/legal/int
   - [Requirements](#requirements)
   - [Exercise 1: Retrieve lab environment information and create Databricks cluster](#exercise-1-retrieve-lab-environment-information-and-create-databricks-cluster)
     - [Task 1: Retrieve Azure Storage account information and Subscription Id](#task-1-retrieve-azure-storage-account-information-and-subscription-id)
-    - [Task 2: Create an Azure Databricks cluster](#task-2-create-an-azure-databricks-cluster)
-  - [Exercise 2: Load Sample Data and Databricks Notebooks](#exercise-2-load-sample-data-and-databricks-notebooks)
-    - [Task 1: Upload the Sample Datasets](#task-1-upload-the-sample-datasets)
-    - [Task 2: Install Azure ML library on the cluster](#task-2-install-azure-ml-library-on-the-cluster)
-    - [Task 3: Open Azure Databricks and complete lab notebooks](#task-3-open-azure-databricks-and-complete-lab-notebooks)
-  - [Exercise 3: Setup Azure Data Factory](#exercise-3-setup-azure-data-factory)
+  - [Exercise 1: Setup Azure Data Factory](#exercise-1-setup-azure-data-factory)
     - [Task 1: Download and stage data to be processed](#task-1-download-and-stage-data-to-be-processed)
-    - [Task 2: Install and configure Azure Data Factory Integration Runtime on your machine](#task-2-install-and-configure-azure-data-factory-integration-runtime-on-your-machine)
-    - [Task 3: Configure Azure Data Factory](#task-3-configure-azure-data-factory)
-  - [Exercise 4: Develop a data factory pipeline for data movement](#exercise-4-develop-a-data-factory-pipeline-for-data-movement)
+    - [Task 2: Configure Azure Data Factory](#task-3-configure-azure-data-factory)
+  - [Exercise 2: Develop a data factory pipeline for data movement](#exercise-4-develop-a-data-factory-pipeline-for-data-movement)
     - [Task 1: Create copy pipeline using the Copy Data Wizard](#task-1-create-copy-pipeline-using-the-copy-data-wizard)
-  - [Exercise 5: Operationalize ML scoring with Azure Databricks and Data Factory](#exercise-5-operationalize-ml-scoring-with-azure-databricks-and-data-factory)
+  - [Exercise 3: Develop a data factory pipeline for data movement]
+  - [Exercise 4: Create an Azure Databricks cluster](#task-2-create-an-azure-databricks-cluster)
+  - [Exercise 2: Load Data and Databricks Notebooks](#exercise-2-load-sample-data-and-databricks-notebooks)
+    - [Task 1: Upload the Sample Datasets](#task-1-upload-the-sample-datasets)
+    - [Task 3: Open Azure Databricks and complete lab notebooks](#task-3-open-azure-databricks-and-complete-lab-notebooks)
+  
     - [Task 1: Create Azure Databricks Linked Service](#task-1-create-azure-databricks-linked-service)
     - [Task 2: Trigger workflow](#task-2-trigger-workflow)
   - [Exercise 6: Summarize data using Azure Databricks](#exercise-6-summarize-data-using-azure-databricks)
@@ -53,11 +52,7 @@ Microsoft and the trademarks listed at https://www.microsoft.com/en-us/legal/int
     - [Task 1: Obtain the JDBC connection string to your Azure Databricks cluster](#task-1-obtain-the-jdbc-connection-string-to-your-azure-databricks-cluster)
     - [Task 2: Connect to Azure Databricks using Power BI Desktop](#task-2-connect-to-azure-databricks-using-power-bi-desktop)
     - [Task 3: Create Power BI report](#task-3-create-power-bi-report)
-  - [Exercise 8: Deploy intelligent web app (Optional Lab)](#exercise-8-deploy-intelligent-web-app-optional-lab)
-    - [Task 1: Register for a trial API account at darksky.net](#task-1-register-for-a-trial-api-account-at-darkskynet)
-    - [Task 2: Deploy web app from GitHub](#task-2-deploy-web-app-from-github)
-    - [Task 3: Manual deployment (optional)](#task-3-manual-deployment-optional)
-  - [After the hands-on lab](#after-the-hands-on-lab)
+   - [After the hands-on lab](#after-the-hands-on-lab)
     - [Task 1: Delete resource group](#task-1-delete-resource-group)
 
 <!-- /TOC -->
@@ -70,17 +65,11 @@ This hands-on lab is designed to provide exposure to many of Microsoft's transfo
 
 By the end of the lab, you will be able to show an end-to-end solution, leveraging many of these technologies, but not necessarily doing work in every component possible.
 
-## Overview
-
-Margie's Travel (MT) provides concierge services for business travelers. In an increasingly crowded market, they are always looking for ways to differentiate themselves, and provide added value to their corporate customers.
-
-They are looking to pilot a web app that their internal customer service agents can use to provide additional information useful to the traveler during the flight booking process. They want to enable their agents to enter in the flight information and produce a prediction as to whether the departing flight will encounter a 15-minute or longer delay, considering the weather forecasted for the departure hour.
-
 ## Solution architecture
 
 Below is a diagram of the solution architecture you will build in this lab. Please study this carefully so you understand the whole of the solution as you are working on the various components.
 
-![This is the high-level overview diagram of the end-to-end solution.](../Whiteboard%20design%20session/media/high-level-overview.png 'High-level overview diagram')
+![This is the high-level overview diagram of the end-to-end solution.](../Whiteboard%20design%20session/media/SolutionArch.png 'High-level overview diagram')
 
 ## Requirements
 
@@ -88,9 +77,230 @@ Below is a diagram of the solution architecture you will build in this lab. Plea
 
    - Trial subscriptions will not work.
 
-2. If you are not a Service Administrator or Co-administrator for the Azure subscription, or if you are running the lab in a hosted environment, you will need to install [Visual Studio 2019 Community](https://visualstudio.microsoft.com/downloads/) with the **ASP.NET and web development** and **Azure development** workloads.
 
 3. Follow all the steps provided in [Before the Hands-on Lab](Before%20the%20HOL%20-%20Big%20data%20and%20visualization.md).
+
+## Exercise 3: Setup Azure Data Factory
+
+Duration: 20 minutes
+
+In this exercise, you will create a baseline environment for Azure Data Factory development for further operationalization of data movement and processing. You will create a Data Factory service, create a Linked Service and set up copy a
+
+
+
+### Task 3: Configure Azure Data Factory
+
+1. Launch a new browser window, and navigate to the Azure portal (<https://portal.azure.com>). Once prompted, log in with your Microsoft Azure credentials. If prompted, choose whether your account is an organization account or a Microsoft account. This will be based on which account was used to provision your Azure subscription that is being used for this lab.
+
+2. From the side menu in the Azure portal, choose **Resource groups**, then enter your resource group name into the filter box, and select it from the list.
+
+3. Next, select your Azure Data Factory service from the list.
+
+4. On the Data Factory blade, select **Author & Monitor** under Actions.
+
+   ![In the Azure Data Factory blade, under Actions, the Author & Monitor option is selected.](media/adf-author-monitor.png 'Author & Monitor')
+
+5. A new page will open in another tab or new window. Within the Azure Data Factory site, select **Author** (the pencil icon) on the menu.
+
+   ![Select Author from the menu.](media/adf-home-author-link.png 'Author link on ADF home page')
+
+6. Now, select **Connections** at the bottom of Factory Resources (1), then select the **Integration Runtimes** tab (2), and finally select **+ New** (3).
+
+   ![Select Connections at the bottom of the page, then select the Integration Runtimes tab, and select New.](media/adf-new-ir.png 'Steps to create a new Integation Runtime connection')
+
+7. In the Integration Runtime Setup blade that appears, select "Perform data movement and dispatch activities to external computes", then select **Continue**.
+
+   ![Select Perform data movement and dispatch activities to external computes.](media/adf-ir-setup-1.png 'Integration Runtime Setup step 1')
+
+8. Select **Self-Hosted** then select **Continue**.
+
+   ![Select Private Network then Next.](media/adf-ir-setup-2.png 'Integration Runtime Setup step 2')
+
+9. Enter a **Name**, such as bigdatagateway-\[initials\], and select **Next**.
+
+   ![Enter a Name and select Next.](media/adf-ir-setup-3.png 'Integration Runtime Setup step 3')
+
+10. Under Option 2: Manual setup, copy the Key1 authentication key value by selecting the Copy button, then select **Finish**.
+
+
+    ![Copy the Key1 value.](media/adf-ir-setup-4.png 'Integration Runtime Setup step 4')
+
+11. _Don't close the current screen or browser session_.
+
+12. Paste the **Key1** value into the box in the middle of the Microsoft Integration Runtime Configuration Manager screen.
+
+    ![The Microsoft Integration Runtime Configuration Manager Register Integration Runtime page displays.](media/image127.png 'Microsoft Integration Runtime Configuration Manager')
+
+13. Select **Register**.
+
+14. It will take a minute or two to register. If it takes more than a couple of minutes, and the screen does not respond or returns an error message, close the screen by selecting the **Cancel** button.
+
+15. The next screen will be New Integration Runtime (Self-hosted) Node. Select Finish.
+
+    ![The Microsoft Integration Runtime Configuration Manager New Integration Runtime (Self-hosted) Node page displays.](media/adf-ir-self-hosted-node.png 'Microsoft Integration Runtime Configuration Manager')
+
+16. You will then get a screen with a confirmation message. Select the **Launch Configuration Manager** button to view the connection details.
+
+    ![The Microsoft Integration Runtime Configuration Manager Node is connected to the cloud service page displays with connection details.](media/adf-ir-launch-config-manager.png 'Microsoft Integration Runtime Configuration Manager')
+
+    ![The Microsoft Integration Runtime Configuration Manager details.](media/adf-ir-config-manager.png 'Microsoft Integration Runtime Configuration Manager')
+
+17. You can now return to the Azure Data Factory page, and view the Integration Runtime you just configured.
+
+    ![You can view your Integration Runtime you just configured.](media/adf-ir-running.png 'Integration Runtime in running state')
+
+18. Select the Azure Data Factory Overview button on the menu. Leave this open for the next exercise.
+
+    ![Select the Azure Data Factory Overview button on the menu.](media/adf-overview.png 'ADF Overview')
+
+## Exercise 4: Develop a data factory pipeline for data movement
+
+Duration: 20 minutes
+
+In this exercise, you will create an Azure Data Factory pipeline to copy data (.CSV files) from an on-premises server (your machine) to Azure Blob Storage. The goal of the exercise is to demonstrate data movement from an on-premises location to Azure Storage (via the Integration Runtime).
+
+### Task 1: Create copy pipeline using the Copy Data Wizard
+
+1. Within the Azure Data Factory overview page, select **Copy Data**.
+
+   ![Select Copy Data from the overview page.](media/adf-copy-data-link.png 'Copy Data')
+
+2. In the Copy Data properties, enter the following:
+
+   - Task name: **CopyOnPrem2AzurePipeline**
+
+   - Task description: (Optional) **"This pipeline copies timesliced CSV files from on-premises C:\\Data to Azure Blob Storage as a continuous job."**
+
+   - Task cadence or Task schedule: **Select Run regularly on schedule**
+
+   - Trigger type: **Select Schedule**
+
+   - Start date time (UTC): **03/01/2018 12:00 am**
+
+   - Recurrence: Select **Month(s)**, and enter Every **1**
+
+   - Under the Advanced recurrence options, make sure you have a value of **0** in the textboxes for **Hours (UTC)** and **Minutes (UTC)**, otherwise it will fail later during Publishing.
+
+   - End: **No End**
+
+   ![Set the ADF pipeline copy activity properties by setting the Task Name to CopyOnPrem2AzurePipeline, adding a description, setting the Task cadence to Run regularly on a Monthly schedule, every 1 month.](media/adf-copy-data-properties.png 'Properties dialog box')
+
+3. Select **Next**.
+
+4. On the Source data store screen, select **+ Create new connection**.
+
+5. Scroll through the options and select **File System**, then select **Continue**.
+
+   ![Select File System, then Continue.](media/adf-copy-data-new-linked-service.png 'Select File System')
+
+6. In the New Linked Service form, enter the following:
+
+   - Name: **OnPremServer**
+
+   - Connect via integration runtime: **Select the Integration runtime created previously in this exercise**.
+
+   - Host: **C:\\Data**
+
+   - User name: **Use your machine's login username**.
+
+   - Password: **Use your machine's login password**.
+
+7. Select **Test connection** to verify you correctly entered the values. Finally, select **Create**.
+
+   ![On the Copy Data activity, specify File server share connection page, fields are set to the previously defined values.](media/adf-copy-data-linked-service-settings.png 'New Linked Service settings')
+
+8. On the Source data store page, select **Next**.
+
+   ![Select Next](media/adf-copy-data-source-next.png 'Select Next')
+
+9. On the **Choose the input file or folder** screen, select **Browse**, then select the **FlightsAndWeather** folder. Next, select **Load all files** under file loading behavior, check **Copy file recursively**, then select **Next**.
+
+   ![In the Choose the input file or folder section, the FlightsandWeather folder is selected.](media/adf-copy-data-source-choose-input.png 'Choose the input file or folder page')
+
+10. On the File format settings page, select the following options:
+
+    - File format: **Text format**
+
+    - Column delimiter: **Comma (,)**
+
+    - Row delimiter: **Auto detect (\r, \n, or \r\n)**
+
+    - Skip line count: **0**
+
+    - First row as header: **Checked**
+
+    ![Enter the form values](media/adf-copy-data-file-format.png 'File format settings')
+
+11. Select **Next**.
+
+12. On the Destination screen, select **+ Create new connection**.
+
+13. Select **Azure Blob Storage** within the New Linked Service blade, then select **Continue**.
+
+    ![Select Azure Blob Storage, then Continue.](media/adf-copy-data-blob-storage.png 'Select Blob Storage')
+
+14. On the New Linked Service (Azure Blob Storage) account screen, enter the following and then select **Create**.
+
+    - Name: **BlobStorageOutput**
+
+    - Connect via integration runtime: **Select your Integration Runtime**.
+
+    - Authentication method: **Select Account key**.
+
+    - Account selection method: **From Azure subscription**
+
+    - Storage account name: **Select the blob storage account you provisioned in the before-the-lab section**.
+
+    ![On the Copy Data New Linked Service Azure Blob storage account page, fields are set to the previously defined settings.](media/adf-copy-data-blob-storage-linked.png 'New Linked Service Blob Storage')
+
+15. On the Destination data store page, select **Next**.
+
+16. From the **Choose the output file or folder** tab, enter the following:
+
+    - Folder path: **sparkcontainer/FlightsAndWeather/{Year}/{Month}/**
+
+    - Filename: **FlightsAndWeather.csv**
+
+    - Year: Select **yyyy** from the drop down.
+
+    - Month: Select **MM** from the drop down.
+
+    - Copy behavior: **Merge files**
+
+    - Select **Next**.
+
+      ![On the Copy Data Choose the output file or folder page, fields are set to the previously defined settings.](media/adf-copy-data-output-file-folder.png 'Choose the output file or folder page')
+
+17. On the File format settings screen, select the **Text format** file format, and check the **Add header to file** checkbox, then select **Next**.
+
+    ![On the Copy Data File format settings page, the check box for Add header to file is selected.](media/adf-copy-data-file-format-settings.png 'File format settings page')
+
+18. On the **Settings** screen, select **Skip incompatible rows** under Actions. Expand Advanced settings and set Degree of copy parallelism to **10**, then select **Next**.
+
+    ![Select Skip incompatible rows and set copy parallelism to 10.](media/adf-copy-data-settings.png 'Settings page')
+
+19. Review settings on the **Summary** tab, but **DO NOT choose Next**.
+
+    ![Summary page](media/adf-copy-data-summary.png 'Summary page')
+
+20. Scroll down on the summary page until you see the **Copy Settings** section. Select **Edit** next to **Copy Settings**.
+
+    ![Scroll down and select Edit within Copy Settings.](media/adf-copy-data-review-page.png 'Summary page')
+
+21. Change the following Copy settings:
+
+    - Retry: Set to **3**.
+
+    - Select **Save**.
+
+      ![Set retry to 3.](media/adf-copy-data-copy-settings.png 'Copy settings')
+
+22. After saving the Copy settings, select **Next** on the Summary tab.
+
+23. On the **Deployment** screen you will see a message that the deployment in is progress, and after a minute or two that the deployment completed. Select **Edit Pipeline** to close out of the wizard.
+
+    ![Select Edit Pipeline on the bottom of the page.](media/adf-copy-data-deployment.png 'Deployment page')
+
 
 ## Exercise 1: Retrieve lab environment information and create Databricks cluster
 
@@ -212,25 +422,6 @@ In this exercise, you will implement a classification experiment. You will load 
 
    ![Azure Databricks tables shown after all three files uploaded.](media/uploaded-data-files.png 'Uploaded data files')
 
-### Task 2: Install Azure ML library on the cluster
-
-1. Select **Clusters** on the left-hand menu, then select your lab cluster to open it.
-
-   ![A screenshot of the Clusters page is shown with the lab cluster highlighted.](media/azure-databricks-cluster.png 'Lab cluster')
-
-2. Select the **Libraries** tab. If you **do not** see the Azure ML library already installed on the cluster, continue to the next step. Otherwise, continue to Task 3.
-
-3. Select **Install New**.
-
-   ![The Libraries tab and Install New button are highlighted.](media/azure-databricks-cluster-install-new.png 'Libraries')
-
-4. In the Install Library dialog, select **PyPi** for the Library Source, then enter the following in the Package field: `azureml-sdk[databricks]`. Select **Install**.
-
-   ![The Install Library dialog is displayed with PyPi selected as the Library Source, and the package name entered into the Package field.](media/azure-databricks-cluster-install-library-pypi.png 'Install Library')
-
-5. **Wait** until the library's status shows as **Installed** before continuing.
-
-   ![The new library is shown with a status of Installed.](media/azure-databricks-cluster-libraries-installed.png 'Libraries')
 
 ### Task 3: Open Azure Databricks and complete lab notebooks
 
@@ -264,51 +455,9 @@ In this exercise, you will implement a classification experiment. You will load 
 
 Duration: 20 minutes
 
-In this exercise, you will create a baseline environment for Azure Data Factory development for further operationalization of data movement and processing. You will create a Data Factory service, and then install the Data Management Gateway which is the agent that facilitates data movement from on-premises to Microsoft Azure.
+In this exercise, you will create a baseline environment for Azure Data Factory development for further operationalization of data movement and processing. You will create a Data Factory service, create a Linked Service and set up copy a
 
-### Task 1: Download and stage data to be processed
 
-1. Open a web browser.
-
-2. Download the AdventureWorks sample data from <http://bit.ly/2zi4Sqa>.
-
-3. Extract it to a new folder called **C:\\Data**.
-
-### Task 2: Install and configure Azure Data Factory Integration Runtime on your machine
-
-1. To download the latest version of Azure Data Factory Integration Runtime, go to <https://www.microsoft.com/en-us/download/details.aspx?id=39717>.
-
-   ![The Azure Data Factory Integration Runtime Download webpage displays.](media/image112.png 'Azure Data Factory Integration Runtime Download webpage')
-
-2. Select Download, then choose the download you want from the next screen.
-
-   ![Under Choose the download you want, the MSI file is selected.](media/image113.png 'Choose the download you want section')
-
-3. Run the installer, once downloaded.
-
-4. When you see the following screen, select Next.
-
-   ![The Welcome page in the Microsoft Integration Runtime Setup Wizard displays.](media/image114.png 'Microsoft Integration Runtime Setup Wizard')
-
-5. Check the box to accept the terms and select Next.
-
-   ![On the End-User License Agreement page, the check box to accept the license agreement is selected, as is the Next button.](media/image115.png 'End-User License Agreement page')
-
-6. Accept the default Destination Folder, and select Next.
-
-   ![On the Destination folder page, the destination folder is set to C;\Program Files\Microsoft Integration Runtime\ and the Next button is selected.](media/image116.png 'Destination folder page')
-
-7. Choose Install to complete the installation.
-
-   ![On the Ready to install Microsoft Integration Runtime page, the Install button is selected.](media/image117.png 'Ready to install page')
-
-8. Select Finish once the installation has completed.
-
-   ![On the Completed the Microsoft Integration Runtime Setup Wizard page, the Finish button is selected.](media/image118.png 'Completed the Wizard page')
-
-9. After selecting Finish, the following screen will appear. Keep it open for now. You will come back to this screen once the Data Factory in Azure has been provisioned, and obtain the gateway key so we can connect Data Factory to this "on-premises" server.
-
-   ![The Microsoft Integration Runtime Configuration Manager, Register Integration Runtime page displays.](media/image119.png 'Register Integration Runtime page')
 
 ### Task 3: Configure Azure Data Factory
 
