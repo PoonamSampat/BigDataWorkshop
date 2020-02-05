@@ -31,15 +31,17 @@ Microsoft and the trademarks listed at https://www.microsoft.com/en-us/legal/int
   - [Overview](#overview)
   - [Solution architecture](#solution-architecture)
   - [Requirements](#requirements)
-  - [Exercise 1: Retrieve lab environment information and create Databricks cluster](#exercise-1-retrieve-lab-environment-information-and-create-databricks-cluster)
-    - [Task 1: Retrieve Azure Storage account information and Subscription Id](#task-1-retrieve-azure-storage-account-information-and-subscription-id)
-  - [Exercise 1: Setup Azure Data Factory](#exercise-1-setup-azure-data-factory)
-    - [Task 1: Download and stage data to be processed](#task-1-download-and-stage-data-to-be-processed)
-    - [Task 2: Configure Azure Data Factory](#task-3-configure-azure-data-factory)
-  - [Exercise 2: Develop a data factory pipeline for data movement](#exercise-4-develop-a-data-factory-pipeline-for-data-movement)
+  -  [Exercise 1: Get Storage Account Details]
+      - [Task 1: Retrieve Azure Storage account information and Subscription Id](#task-1-retrieve-azure-storage-account-information-and-subscription-id)
+  - [Exercise 2: Setup Azure Data Factory](#exercise-2-setup-azure-data-factory)
+    
+    - [Task 1: Configure Azure Data Factory](#task-1-configure-azure-data-factory)
+    
+  - [Exercise 3: Develop a data factory pipeline for data movement](#exercise-3-develop-a-data-factory-pipeline-for-data-movement)
     - [Task 1: Create copy pipeline using the Copy Data Wizard](#task-1-create-copy-pipeline-using-the-copy-data-wizard)
-  - [Exercise 3: Develop a data factory pipeline for data movement]
-  - [Exercise 4: Create an Azure Databricks cluster](#task-2-create-an-azure-databricks-cluster)
+ 
+  - [Exercise 4: Retrieve lab environment information and create Databricks cluster](#exercise-4-retrieve-lab-environment-information-and-create-databricks-cluster)
+    - [Task 1 : Create an Azure Databricks cluster](#task-1-create-an-azure-databricks-cluster)
   - [Exercise 2: Load Data and Databricks Notebooks](#exercise-2-load-sample-data-and-databricks-notebooks)
     - [Task 1: Upload the Sample Datasets](#task-1-upload-the-sample-datasets)
     - [Task 3: Open Azure Databricks and complete lab notebooks](#task-3-open-azure-databricks-and-complete-lab-notebooks)
@@ -69,7 +71,7 @@ By the end of the lab, you will be able to show an end-to-end solution, leveragi
 
 Below is a diagram of the solution architecture you will build in this lab. Please study this carefully so you understand the whole of the solution as you are working on the various components.
 
-![This is the high-level overview diagram of the end-to-end solution.](../Whiteboard%20design%20session/media/SolutionArch.png 'High-level overview diagram')
+![This is the high-level overview diagram of the end-to-end solution.](../media/SolutionArch.png 'High-level overview diagram')
 
 ## Requirements
 
@@ -80,7 +82,29 @@ Below is a diagram of the solution architecture you will build in this lab. Plea
 
 3. Follow all the steps provided in [Before the Hands-on Lab](Before%20the%20HOL%20-%20Big%20data%20and%20visualization.md).
 
-## Exercise 3: Setup Azure Data Factory
+## Exercise 1: Retrieve Azure Storage account information and Subscription Id
+
+### Task 1: Retrieve Azure Storage account information and Subscription Id
+
+You will need to have the Azure Storage account name and access key when you create your Azure Databricks cluster during the lab. You will also need to create storage containers in which you will store your data files.
+
+1. From the side menu in the Azure portal, choose **Resource groups**, then enter your resource group name into the filter box, and select it from the list.
+
+2. Next, select your lab Azure Storage account from the list.
+
+   ![Select the lab Azure Storage account from within your lab resource group.](media/select-azure-storage-account.png)
+
+3. On the Overview blade, locate and copy your Azure **Subscription Id** and save to a text editor such as Notepad for later.
+
+   ![Copy the Azure Subscription Id on the Overview blade.](media/azure-storage-subscription-id.png)
+
+4. Select **Access keys** (1) from the menu. Copy the **storage account name** (2) and the **key1** key (3) and copy the values to a text editor such as Notepad for later.
+
+   ![Select Access keys from menu - copy storage account name - copy key.](media/azure-storage-access-keys.png)
+
+
+
+## Exercise 2: Setup Azure Data Factory
 
 Duration: 20 minutes
 
@@ -88,7 +112,7 @@ In this exercise, you will create a baseline environment for Azure Data Factory 
 
 
 
-### Task 3: Configure Azure Data Factory
+### Task 1: Configure Azure Data Factory
 
 1. Launch a new browser window, and navigate to the Azure portal (<https://portal.azure.com>). Once prompted, log in with your Microsoft Azure credentials. If prompted, choose whether your account is an organization account or a Microsoft account. This will be based on which account was used to provision your Azure subscription that is being used for this lab.
 
@@ -157,7 +181,7 @@ In this exercise, you will create a baseline environment for Azure Data Factory 
 
 Duration: 20 minutes
 
-In this exercise, you will create an Azure Data Factory pipeline to copy data (.CSV files) from an on-premises server (your machine) to Azure Blob Storage. The goal of the exercise is to demonstrate data movement from an on-premises location to Azure Storage (via the Integration Runtime).
+In this exercise, you will create an Azure Data Factory pipeline to copy data using Magento and Shopify REST API to Azure Data Lake Gen 2. The goal of the exercise is to demonstrate data movement from REST API payload to Azure Storage (via the Integration Runtime).
 
 ### Task 1: Create copy pipeline using the Copy Data Wizard
 
@@ -213,35 +237,17 @@ In this exercise, you will create an Azure Data Factory pipeline to copy data (.
 
    ![Select Next](media/adf-copy-data-source-next.png 'Select Next')
 
-9. On the **Choose the input file or folder** screen, select **Browse**, then select the **FlightsAndWeather** folder. Next, select **Load all files** under file loading behavior, check **Copy file recursively**, then select **Next**.
-
-   ![In the Choose the input file or folder section, the FlightsandWeather folder is selected.](media/adf-copy-data-source-choose-input.png 'Choose the input file or folder page')
-
-10. On the File format settings page, select the following options:
-
-    - File format: **Text format**
-
-    - Column delimiter: **Comma (,)**
-
-    - Row delimiter: **Auto detect (\r, \n, or \r\n)**
-
-    - Skip line count: **0**
-
-    - First row as header: **Checked**
-
-    ![Enter the form values](media/adf-copy-data-file-format.png 'File format settings')
 
 11. Select **Next**.
 
 12. On the Destination screen, select **+ Create new connection**.
 
-13. Select **Azure Blob Storage** within the New Linked Service blade, then select **Continue**.
+13. Select **Azure Data Lake Gen 2** within the New Linked Service blade, then select **Continue**.
 
-    ![Select Azure Blob Storage, then Continue.](media/adf-copy-data-blob-storage.png 'Select Blob Storage')
+    
+14. On the New Linked Service (Azure Data Lake Gen2) account screen, enter the following and then select **Create**.
 
-14. On the New Linked Service (Azure Blob Storage) account screen, enter the following and then select **Create**.
-
-    - Name: **BlobStorageOutput**
+    - Name: **DataLakeStorageOutput**
 
     - Connect via integration runtime: **Select your Integration Runtime**.
 
@@ -249,7 +255,7 @@ In this exercise, you will create an Azure Data Factory pipeline to copy data (.
 
     - Account selection method: **From Azure subscription**
 
-    - Storage account name: **Select the blob storage account you provisioned in the before-the-lab section**.
+    - Storage account name: **Select the data lake gen 2 storage account you provisioned in the before-the-lab section**.
 
     ![On the Copy Data New Linked Service Azure Blob storage account page, fields are set to the previously defined settings.](media/adf-copy-data-blob-storage-linked.png 'New Linked Service Blob Storage')
 
@@ -308,24 +314,6 @@ Duration: 10 minutes
 
 In this exercise, you will retrieve your Azure Storage account name and access key and your Azure Subscription Id and record the values to use later within the lab. You will also create a new Azure Databricks cluster.
 
-### Task 1: Retrieve Azure Storage account information and Subscription Id
-
-You will need to have the Azure Storage account name and access key when you create your Azure Databricks cluster during the lab. You will also need to create storage containers in which you will store your flight and weather data files.
-
-1. From the side menu in the Azure portal, choose **Resource groups**, then enter your resource group name into the filter box, and select it from the list.
-
-2. Next, select your lab Azure Storage account from the list.
-
-   ![Select the lab Azure Storage account from within your lab resource group.](media/select-azure-storage-account.png)
-
-3. On the Overview blade, locate and copy your Azure **Subscription Id** and save to a text editor such as Notepad for later.
-
-   ![Copy the Azure Subscription Id on the Overview blade.](media/azure-storage-subscription-id.png)
-
-4. Select **Access keys** (1) from the menu. Copy the **storage account name** (2) and the **key1** key (3) and copy the values to a text editor such as Notepad for later.
-
-   ![Select Access keys from menu - copy storage account name - copy key.](media/azure-storage-access-keys.png)
-
 ### Task 2: Create an Azure Databricks cluster
 
 You have provisioned an Azure Databricks workspace, and now you need to create a new cluster within the workspace. Part of the cluster configuration includes setting up an account access key to your Azure Storage account, using the Spark Config within the new cluster form. This will allow your cluster to access the lab files.
@@ -382,19 +370,8 @@ You have provisioned an Azure Databricks workspace, and now you need to create a
 
 Duration: 60 minutes
 
-In this exercise, you will implement a classification experiment. You will load the training data from your local machine into a dataset. Then, you will explore the data to identify the primary components you should use for prediction, and use two different algorithms for predicting the classification. You will then evaluate the performance of both algorithms and choose the algorithm that performs best. The model selected will be exposed as a web service that is integrated with the optional sample web app at the end.
+In this exercise, you will load data from Data Lake Gen 2, perform transformations and write back to Data Lake Gen 2.
 
-### Task 1: Upload the Sample Datasets
-
-1. Before you begin working with machine learning services, there are three datasets you need to load.
-
-2. Download the three CSV sample datasets from here: <http://bit.ly/2wGAqrl> (If you get an error, or the page won't open, try pasting the URL into a new browser window and verify the case sensitive URL is exactly as shown). If still having trouble, a zip file called AdventureWorksTravelDatasets.zip is included in the lab-files folders.
-
-3. Extract the ZIP and verify you have the following files:
-
-   - FlightDelaysWithAirportCodes.csv
-   - FlightWeatherWithAirportCodes.csv
-   - AirportCodeLocationLookupClean.csv
 
 4. Open your Azure Databricks workspace. Before continuing to the next step, verify that your new cluster is running. Do this by navigating to **Clusters** on the left-hand menu and ensuring that the state of your cluster is **Running**.
 
@@ -409,19 +386,6 @@ In this exercise, you will implement a classification experiment. You will load 
    ![Create a new table using the FlightDelaysWithAirportCodes.csv file.](media/create-flight-delays-table-ui.png 'Create new table')
 
 7. Select your cluster to preview the table, then select **Preview Table**.
-
-8. Change the Table Name to `flight_delays_with_airport_codes` and select the checkmark for **First row is header**. Select **Create Table**.
-
-   ![Rename table and check the first row is header checkbox.](media/flight-delays-attributes.png 'Rename table')
-
-9. Repeat the previous steps for the FlightWeatherWithAirportCode.csv and AirportCodeLocationsClean.csv files, setting the name for each dataset in a similar fashion. There should be a total of three files that are uploaded. Each table should be named as follows:
-
-   - flightweatherwithairportcode_csv to **flight_weather_with_airport_code**
-   - flightdelayswithairportcodes_csv to **flight_delays_with_airport_codes**
-   - airportcodelocationlookupclean_csv to **airport_code_location_lookup_clean**
-
-   ![Azure Databricks tables shown after all three files uploaded.](media/uploaded-data-files.png 'Uploaded data files')
-
 
 ### Task 3: Open Azure Databricks and complete lab notebooks
 
@@ -451,228 +415,7 @@ In this exercise, you will implement a classification experiment. You will load 
 
 8. Do NOT run any notebooks within the Exercise 5 or 6 folders. They will be discussed later in the lab.
 
-## Exercise 3: Setup Azure Data Factory
-
-Duration: 20 minutes
-
-In this exercise, you will create a baseline environment for Azure Data Factory development for further operationalization of data movement and processing. You will create a Data Factory service, create a Linked Service and set up copy a
-
-
-
-### Task 3: Configure Azure Data Factory
-
-1. Launch a new browser window, and navigate to the Azure portal (<https://portal.azure.com>). Once prompted, log in with your Microsoft Azure credentials. If prompted, choose whether your account is an organization account or a Microsoft account. This will be based on which account was used to provision your Azure subscription that is being used for this lab.
-
-2. From the side menu in the Azure portal, choose **Resource groups**, then enter your resource group name into the filter box, and select it from the list.
-
-3. Next, select your Azure Data Factory service from the list.
-
-4. On the Data Factory blade, select **Author & Monitor** under Actions.
-
-   ![In the Azure Data Factory blade, under Actions, the Author & Monitor option is selected.](media/adf-author-monitor.png 'Author & Monitor')
-
-5. A new page will open in another tab or new window. Within the Azure Data Factory site, select **Author** (the pencil icon) on the menu.
-
-   ![Select Author from the menu.](media/adf-home-author-link.png 'Author link on ADF home page')
-
-6. Now, select **Connections** at the bottom of Factory Resources (1), then select the **Integration Runtimes** tab (2), and finally select **+ New** (3).
-
-   ![Select Connections at the bottom of the page, then select the Integration Runtimes tab, and select New.](media/adf-new-ir.png 'Steps to create a new Integation Runtime connection')
-
-7. In the Integration Runtime Setup blade that appears, select "Perform data movement and dispatch activities to external computes", then select **Continue**.
-
-   ![Select Perform data movement and dispatch activities to external computes.](media/adf-ir-setup-1.png 'Integration Runtime Setup step 1')
-
-8. Select **Self-Hosted** then select **Continue**.
-
-   ![Select Private Network then Next.](media/adf-ir-setup-2.png 'Integration Runtime Setup step 2')
-
-9. Enter a **Name**, such as bigdatagateway-\[initials\], and select **Next**.
-
-   ![Enter a Name and select Next.](media/adf-ir-setup-3.png 'Integration Runtime Setup step 3')
-
-10. Under Option 2: Manual setup, copy the Key1 authentication key value by selecting the Copy button, then select **Finish**.
-
-
-    ![Copy the Key1 value.](media/adf-ir-setup-4.png 'Integration Runtime Setup step 4')
-
-11. _Don't close the current screen or browser session_.
-
-12. Paste the **Key1** value into the box in the middle of the Microsoft Integration Runtime Configuration Manager screen.
-
-    ![The Microsoft Integration Runtime Configuration Manager Register Integration Runtime page displays.](media/image127.png 'Microsoft Integration Runtime Configuration Manager')
-
-13. Select **Register**.
-
-14. It will take a minute or two to register. If it takes more than a couple of minutes, and the screen does not respond or returns an error message, close the screen by selecting the **Cancel** button.
-
-15. The next screen will be New Integration Runtime (Self-hosted) Node. Select Finish.
-
-    ![The Microsoft Integration Runtime Configuration Manager New Integration Runtime (Self-hosted) Node page displays.](media/adf-ir-self-hosted-node.png 'Microsoft Integration Runtime Configuration Manager')
-
-16. You will then get a screen with a confirmation message. Select the **Launch Configuration Manager** button to view the connection details.
-
-    ![The Microsoft Integration Runtime Configuration Manager Node is connected to the cloud service page displays with connection details.](media/adf-ir-launch-config-manager.png 'Microsoft Integration Runtime Configuration Manager')
-
-    ![The Microsoft Integration Runtime Configuration Manager details.](media/adf-ir-config-manager.png 'Microsoft Integration Runtime Configuration Manager')
-
-17. You can now return to the Azure Data Factory page, and view the Integration Runtime you just configured.
-
-    ![You can view your Integration Runtime you just configured.](media/adf-ir-running.png 'Integration Runtime in running state')
-
-18. Select the Azure Data Factory Overview button on the menu. Leave this open for the next exercise.
-
-    ![Select the Azure Data Factory Overview button on the menu.](media/adf-overview.png 'ADF Overview')
-
-## Exercise 4: Develop a data factory pipeline for data movement
-
-Duration: 20 minutes
-
-In this exercise, you will create an Azure Data Factory pipeline to copy data (.CSV files) from an on-premises server (your machine) to Azure Blob Storage. The goal of the exercise is to demonstrate data movement from an on-premises location to Azure Storage (via the Integration Runtime).
-
-### Task 1: Create copy pipeline using the Copy Data Wizard
-
-1. Within the Azure Data Factory overview page, select **Copy Data**.
-
-   ![Select Copy Data from the overview page.](media/adf-copy-data-link.png 'Copy Data')
-
-2. In the Copy Data properties, enter the following:
-
-   - Task name: **CopyOnPrem2AzurePipeline**
-
-   - Task description: (Optional) **"This pipeline copies timesliced CSV files from on-premises C:\\Data to Azure Blob Storage as a continuous job."**
-
-   - Task cadence or Task schedule: **Select Run regularly on schedule**
-
-   - Trigger type: **Select Schedule**
-
-   - Start date time (UTC): **03/01/2018 12:00 am**
-
-   - Recurrence: Select **Month(s)**, and enter Every **1**
-
-   - Under the Advanced recurrence options, make sure you have a value of **0** in the textboxes for **Hours (UTC)** and **Minutes (UTC)**, otherwise it will fail later during Publishing.
-
-   - End: **No End**
-
-   ![Set the ADF pipeline copy activity properties by setting the Task Name to CopyOnPrem2AzurePipeline, adding a description, setting the Task cadence to Run regularly on a Monthly schedule, every 1 month.](media/adf-copy-data-properties.png 'Properties dialog box')
-
-3. Select **Next**.
-
-4. On the Source data store screen, select **+ Create new connection**.
-
-5. Scroll through the options and select **File System**, then select **Continue**.
-
-   ![Select File System, then Continue.](media/adf-copy-data-new-linked-service.png 'Select File System')
-
-6. In the New Linked Service form, enter the following:
-
-   - Name: **OnPremServer**
-
-   - Connect via integration runtime: **Select the Integration runtime created previously in this exercise**.
-
-   - Host: **C:\\Data**
-
-   - User name: **Use your machine's login username**.
-
-   - Password: **Use your machine's login password**.
-
-7. Select **Test connection** to verify you correctly entered the values. Finally, select **Create**.
-
-   ![On the Copy Data activity, specify File server share connection page, fields are set to the previously defined values.](media/adf-copy-data-linked-service-settings.png 'New Linked Service settings')
-
-8. On the Source data store page, select **Next**.
-
-   ![Select Next](media/adf-copy-data-source-next.png 'Select Next')
-
-9. On the **Choose the input file or folder** screen, select **Browse**, then select the **FlightsAndWeather** folder. Next, select **Load all files** under file loading behavior, check **Copy file recursively**, then select **Next**.
-
-   ![In the Choose the input file or folder section, the FlightsandWeather folder is selected.](media/adf-copy-data-source-choose-input.png 'Choose the input file or folder page')
-
-10. On the File format settings page, select the following options:
-
-    - File format: **Text format**
-
-    - Column delimiter: **Comma (,)**
-
-    - Row delimiter: **Auto detect (\r, \n, or \r\n)**
-
-    - Skip line count: **0**
-
-    - First row as header: **Checked**
-
-    ![Enter the form values](media/adf-copy-data-file-format.png 'File format settings')
-
-11. Select **Next**.
-
-12. On the Destination screen, select **+ Create new connection**.
-
-13. Select **Azure Blob Storage** within the New Linked Service blade, then select **Continue**.
-
-    ![Select Azure Blob Storage, then Continue.](media/adf-copy-data-blob-storage.png 'Select Blob Storage')
-
-14. On the New Linked Service (Azure Blob Storage) account screen, enter the following and then select **Create**.
-
-    - Name: **BlobStorageOutput**
-
-    - Connect via integration runtime: **Select your Integration Runtime**.
-
-    - Authentication method: **Select Account key**.
-
-    - Account selection method: **From Azure subscription**
-
-    - Storage account name: **Select the blob storage account you provisioned in the before-the-lab section**.
-
-    ![On the Copy Data New Linked Service Azure Blob storage account page, fields are set to the previously defined settings.](media/adf-copy-data-blob-storage-linked.png 'New Linked Service Blob Storage')
-
-15. On the Destination data store page, select **Next**.
-
-16. From the **Choose the output file or folder** tab, enter the following:
-
-    - Folder path: **sparkcontainer/FlightsAndWeather/{Year}/{Month}/**
-
-    - Filename: **FlightsAndWeather.csv**
-
-    - Year: Select **yyyy** from the drop down.
-
-    - Month: Select **MM** from the drop down.
-
-    - Copy behavior: **Merge files**
-
-    - Select **Next**.
-
-      ![On the Copy Data Choose the output file or folder page, fields are set to the previously defined settings.](media/adf-copy-data-output-file-folder.png 'Choose the output file or folder page')
-
-17. On the File format settings screen, select the **Text format** file format, and check the **Add header to file** checkbox, then select **Next**.
-
-    ![On the Copy Data File format settings page, the check box for Add header to file is selected.](media/adf-copy-data-file-format-settings.png 'File format settings page')
-
-18. On the **Settings** screen, select **Skip incompatible rows** under Actions. Expand Advanced settings and set Degree of copy parallelism to **10**, then select **Next**.
-
-    ![Select Skip incompatible rows and set copy parallelism to 10.](media/adf-copy-data-settings.png 'Settings page')
-
-19. Review settings on the **Summary** tab, but **DO NOT choose Next**.
-
-    ![Summary page](media/adf-copy-data-summary.png 'Summary page')
-
-20. Scroll down on the summary page until you see the **Copy Settings** section. Select **Edit** next to **Copy Settings**.
-
-    ![Scroll down and select Edit within Copy Settings.](media/adf-copy-data-review-page.png 'Summary page')
-
-21. Change the following Copy settings:
-
-    - Retry: Set to **3**.
-
-    - Select **Save**.
-
-      ![Set retry to 3.](media/adf-copy-data-copy-settings.png 'Copy settings')
-
-22. After saving the Copy settings, select **Next** on the Summary tab.
-
-23. On the **Deployment** screen you will see a message that the deployment in is progress, and after a minute or two that the deployment completed. Select **Edit Pipeline** to close out of the wizard.
-
-    ![Select Edit Pipeline on the bottom of the page.](media/adf-copy-data-deployment.png 'Deployment page')
-
-## Exercise 5: Operationalize ML scoring with Azure Databricks and Data Factory
+## Exercise 5: Operationalize Azure Databricks and Data Factory
 
 Duration: 20 minutes
 
