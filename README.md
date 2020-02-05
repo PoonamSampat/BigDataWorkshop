@@ -23,8 +23,7 @@ February 2020
 ### Workshop
 
 At the end of this workshop, you will be better able to build a complete data pipeline and visualize the data.
-In addition, you will learn how to ingest the data, use Azure Data Factory (ADF) for data movement and operationalizing the data pipeline, how to store the data in raw format, learn about Azure Data Lake Gen 2, Process the data using Databricks , 
-Learn about Databricks auto clustering ,scalable on-demand predictions,summarize data with Azure Databricks and PySpark, store the data into SnowFlake using Data Bricks Connector and visualize the data using Power BI.
+In addition, you will learn how to ingest the data, use Azure Data Factory (ADF) for data movement and operationalizing the data pipeline, how to store the data in raw format, learn about Azure Data Lake Gen 2, Process the data using Databricks ,learn about Databricks auto clustering ,summarize data with Azure Databricks and PySpark, store the data into SnowFlake using Azure DataBricks Connector and visualize the data using Power BI.
 
 
 ### Hands-on lab
