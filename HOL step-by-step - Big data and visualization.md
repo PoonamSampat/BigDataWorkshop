@@ -112,7 +112,7 @@ In this exercise, you will create a baseline environment for Azure Data Factory 
 
 
 
-### Task 1: Configure Azure Data Factory
+### Task 1: Configure Azure Data Factory :Create copy pipeline using the Copy Data Wizard
 
 1. Launch a new browser window, and navigate to the Azure portal (<https://portal.azure.com>). Once prompted, log in with your Microsoft Azure credentials. If prompted, choose whether your account is an organization account or a Microsoft account. This will be based on which account was used to provision your Azure subscription that is being used for this lab.
 
@@ -122,7 +122,7 @@ In this exercise, you will create a baseline environment for Azure Data Factory 
 
 4. On the Data Factory blade, select **Author & Monitor** under Actions.
 
-   ![In the Azure Data Factory blade, under Actions, the Author & Monitor option is selected.](media/adf-author-monitor.png 'Author & Monitor')
+   ![In the Azure Data Factory blade, under Actions, the Author & Monitor option is selected.](./media/adf-author-monitor.png 'Author & Monitor')
 
 5. A new page will open in another tab or new window. Within the Azure Data Factory site, select **Author** (the pencil icon) on the menu.
 
@@ -130,7 +130,7 @@ In this exercise, you will create a baseline environment for Azure Data Factory 
 
 6. Select the copy activity
 
-   ![Select Copy Data, then select the Services and apps tab, and select Create New Connection.](media/CopyActivity_Step1.png 'Steps to create a new Integation Runtime connection')
+   ![Select Copy Data, then select the Services and apps tab, and select Create New Connection.](./media/CopyActivity_Step1.png 'Steps to create a new Integation Runtime connection')
 
 7. In the Linked Service blade that appears select REST.
 
@@ -141,42 +141,6 @@ https://docs.microsoft.com/en-us/azure/data-factory/connector-rest
 
    ![Fill in details and create the Linked Service](media/CopyActivity_Step3.png 'Linked Service Creation step 2')
 
-9. Enter a **Name**, such as bigdatagateway-\[initials\], and select **Next**.
-
-   ![Enter a Name and select Next.](media/adf-ir-setup-3.png 'Integration Runtime Setup step 3')
-
-10. Under Option 2: Manual setup, copy the Key1 authentication key value by selecting the Copy button, then select **Finish**.
-
-
-    ![Copy the Key1 value.](media/adf-ir-setup-4.png 'Integration Runtime Setup step 4')
-
-11. _Don't close the current screen or browser session_.
-
-12. Paste the **Key1** value into the box in the middle of the Microsoft Integration Runtime Configuration Manager screen.
-
-    ![The Microsoft Integration Runtime Configuration Manager Register Integration Runtime page displays.](media/image127.png 'Microsoft Integration Runtime Configuration Manager')
-
-13. Select **Register**.
-
-14. It will take a minute or two to register. If it takes more than a couple of minutes, and the screen does not respond or returns an error message, close the screen by selecting the **Cancel** button.
-
-15. The next screen will be New Integration Runtime (Self-hosted) Node. Select Finish.
-
-    ![The Microsoft Integration Runtime Configuration Manager New Integration Runtime (Self-hosted) Node page displays.](media/adf-ir-self-hosted-node.png 'Microsoft Integration Runtime Configuration Manager')
-
-16. You will then get a screen with a confirmation message. Select the **Launch Configuration Manager** button to view the connection details.
-
-    ![The Microsoft Integration Runtime Configuration Manager Node is connected to the cloud service page displays with connection details.](media/adf-ir-launch-config-manager.png 'Microsoft Integration Runtime Configuration Manager')
-
-    ![The Microsoft Integration Runtime Configuration Manager details.](media/adf-ir-config-manager.png 'Microsoft Integration Runtime Configuration Manager')
-
-17. You can now return to the Azure Data Factory page, and view the Integration Runtime you just configured.
-
-    ![You can view your Integration Runtime you just configured.](media/adf-ir-running.png 'Integration Runtime in running state')
-
-18. Select the Azure Data Factory Overview button on the menu. Leave this open for the next exercise.
-
-    ![Select the Azure Data Factory Overview button on the menu.](media/adf-overview.png 'ADF Overview')
 
 ## Exercise 4: Develop a data factory pipeline for data movement
 
