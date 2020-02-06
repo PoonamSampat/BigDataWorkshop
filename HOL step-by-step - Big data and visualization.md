@@ -128,17 +128,18 @@ In this exercise, you will create a baseline environment for Azure Data Factory 
 
    ![Select Author from the menu.](media/adf-home-author-link.png 'Author link on ADF home page')
 
-6. Now, select **Connections** at the bottom of Factory Resources (1), then select the **Integration Runtimes** tab (2), and finally select **+ New** (3).
+6. Select the copy activity
 
-   ![Select Connections at the bottom of the page, then select the Integration Runtimes tab, and select New.](media/adf-new-ir.png 'Steps to create a new Integation Runtime connection')
+   ![Select Copy Data, then select the Services and apps tab, and select Create New Connection.](media/CopyActivity_Step1.png 'Steps to create a new Integation Runtime connection')
 
-7. In the Integration Runtime Setup blade that appears, select "Perform data movement and dispatch activities to external computes", then select **Continue**.
+7. In the Linked Service blade that appears select REST.
 
-   ![Select Perform data movement and dispatch activities to external computes.](media/adf-ir-setup-1.png 'Integration Runtime Setup step 1')
+   ![Select REST for the Linked Service Type](media/CopyActivity_Step2.png 'Linked Service Creation')
 
-8. Select **Self-Hosted** then select **Continue**.
+8. Fill in the details on the New Linked Service, you can refer to this link for details on each field:
+https://docs.microsoft.com/en-us/azure/data-factory/connector-rest
 
-   ![Select Private Network then Next.](media/adf-ir-setup-2.png 'Integration Runtime Setup step 2')
+   ![Fill in details and create the Linked Service](media/CopyActivity_Step3.png 'Linked Service Creation step 2')
 
 9. Enter a **Name**, such as bigdatagateway-\[initials\], and select **Next**.
 
