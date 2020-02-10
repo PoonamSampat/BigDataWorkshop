@@ -134,9 +134,10 @@ In this task, you will create a storage container in which you will store your M
 
    ![Select the lab Azure Storage account from within your lab resource group](media/select-azure-storage-account.png)
 
-3. Select **Containers** (1) from the menu. Select **+ Container** (2) on the Blobs blade, enter **sparkcontainer** for the name (3), leaving the public access level set to Private. Select **OK** (4) to create the container.
+3. Select **Containers** (1) from the menu. Select **+ Container** (2) enter **analytics** for the name (3), leaving the public access level set to Private. Select **OK** (4) to create the container.
 
    ![Screenshot showing the steps to create a new storage container](media/azure-storage-create-container.png)
+   
 
 ### Task 4: Provision Azure Data Factory
 
