@@ -106,9 +106,11 @@ In the previous lab, you created a container called Analytics, we will add folde
 
 You can use Azure Storage Explorer, navigate to the specific container, Analytics and create folders as follows:
 
-a.	raw/system/magento/
-b.	raw/system/shopify/
-c.	raw/system/postgress/
+  a.	raw/system/magento/
+
+  b.	raw/system/shopify/
+
+  c.	raw/system/postgress/
 
 ![Creating  folders to store the raw data](media/Addrawfolders.png)
 
