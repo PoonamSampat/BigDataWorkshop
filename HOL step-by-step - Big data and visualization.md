@@ -395,7 +395,7 @@ In this exercise, you will extend the Data Factory to operationalize the Databri
    
    
 
-## Exercise 4: Populating SnowFlakes suing the Databricks connector for SnowFlakes
+## Exercise 4: Populating SnowFlakes using the Databricks connector for SnowFlakes
 
 ### Task 1: <VIJI>
 
