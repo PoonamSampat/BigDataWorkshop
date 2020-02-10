@@ -155,8 +155,11 @@ https://docs.microsoft.com/en-us/azure/data-factory/connector-rest
 9.Enter below details and Click Create
 
   a.	Give  name as ShopifyRest
+  
   b.	Select Integration Run time as AutoResolveIntegrationRuntime
+  
   c.	Base URL - <Base Shopify URL> similar to - https://<shop>.myshopify.com/admin/api/2020-01/
+  
   d.	Authentication Type as Anonymous
   
  After specificying the above test the connection and click create the next screen required to enter the REST dataset properties.
@@ -164,20 +167,26 @@ https://docs.microsoft.com/en-us/azure/data-factory/connector-rest
 10.	Specify REST dataset properties
 
   a.	Enter Relative URL as orders.json?limit=5&created_at_min=2020-02-13T00:00:00&created_at_max=2020-02-14T00:00:00&financial_status=any&status=any
+  
   b.	Request Method – GET
+  
   c.	Click New under Additional Headers
-  i.	Name as Content-Type  , Value as application/json
-  ii.	Name as X-Shopify-Access-Token , Value as <APIToken>
+  
+    i.	Name as Content-Type  , Value as application/json
+    
+    ii.	Name as X-Shopify-Access-Token , Value as <APIToken>
+    
   d.	Click Next
+  
 
    
-9. On the Destination screen, select **+ Create new connection**.
+11. On the Destination screen, select **+ Create new connection**.
 
-10. Select **Azure Data Lake Gen 2** within the New Linked Service blade, then select **Continue**.
+12. Select **Azure Data Lake Gen 2** within the New Linked Service blade, then select **Continue**.
 
      ![Select Azure Data Lake Gen 2 for the Linked Service Type](media/DestinationDataSource.png 'Linked Service Creation')
      
-11. On the New Linked Service (Azure Data Lake Gen2) account screen, enter the following and then select **Create**.
+13. On the New Linked Service (Azure Data Lake Gen2) account screen, enter the following and then select **Create**.
 
     - Name: **DataLakeStorageOutput**
 
@@ -189,14 +198,13 @@ https://docs.microsoft.com/en-us/azure/data-factory/connector-rest
 
     - Storage account name: **Select the data lake gen 2 storage account you provisioned in the before-the-lab section**.
 
-12.	Choose the output file or folder , Browse -> analytics/raw/system/shopify and filename as orders.json
+14.	Choose the output file or folder , Browse -> analytics/raw/system/shopify and filename as orders.json
     
 15. On the Destination data store page, select **Next**.
 
-7.	File Format Settings, File Format as JSON, File pattern as Set of Objects
+16.	File Format Settings, File Format as JSON, File pattern as Set of Objects
 
-9.	Summary, Click Next
-
+17.	Summary, Click Next
 
 
 ![Summary for ADF](media/ADFSummary.png 'Summary of Pipeline')
