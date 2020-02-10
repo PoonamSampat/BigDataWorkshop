@@ -209,8 +209,9 @@ https://docs.microsoft.com/en-us/azure/data-factory/connector-rest
 
 ![Summary for ADF](media/ADFSummary.png 'Summary of Pipeline')
 
+## Parametrize the ADF Path
 
-## Exercise 1: Retrieve lab environment information and create Databricks cluster
+## Exercise 4: Retrieve lab environment information and create Databricks cluster
 
 Duration: 10 minutes
 
@@ -392,7 +393,7 @@ Duration: 20 minutes <VIJI>
 
 In this exercise, you will create visualizations in Power BI Desktop.
 
-### Task 1: Obtain the JDBC connection string to your Azure Databricks cluster
+### Task 1: Obtain the JDBC connection string to your Azure Databricks cluster - Optional
 
 Before you begin, you must first obtain the JDBC connection string to your Azure Databricks cluster.
 
@@ -418,7 +419,7 @@ Before you begin, you must first obtain the JDBC connection string to your Azure
 
    <https://westus2.azuredatabricks.net:443/sql/protocolv1/o/2035768554230150/0603-160328-rage709> or <https://westus2.azuredatabricks.net:443/sql/protocolv1/o/2035768554230150/lab> (if you choose the aliased version)
 
-### Task 2: Connect to Azure Databricks using Power BI Desktop
+### Task 2: Connect to Azure Databricks using Power BI Desktop [Optional]
 
 1. If you did not already do so during the before the hands-on lab setup, download Power BI Desktop from https://powerbi.microsoft.com/en-us/desktop/.
 
