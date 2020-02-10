@@ -219,6 +219,21 @@ Click on Next and publish the pipeline.
 
 ![Monitor the pipeline](media/MonitorPipeline.png 'Monitor Pipeline')
 
+## Set up Magento as the Source
+
+  Repeat the above process for Magento with 
+  
+    a.	Base URL as https://www.<shop>.com.sg/rest/
+  
+    b.	Relative URL as /V1/orders?searchCriteria[currentPage]=1&searchCriteria[pageSize]=500&searchCriteria[sortOrders][0][field]=entity_id&searchCriteria[sortOrders][0][direction]=ASC&searchCriteria[filter_groups][0][filters][0][field]=updated_at&searchCriteria[filter_groups][0][filters][0][value]=2020-01-31 00:00:00&searchCriteria[filter_groups][0][filters][0][condition_type]=gteq&searchCriteria[filter_groups][0][filters][1][field]=updated_at&searchCriteria[filter_groups][0][filters][1][value]=2020-02-06 00:00:00&searchCriteria[filter_groups][0][filters][1][condition_type]=lteq
+    c.	Request Method – GET
+    
+    d.	Click New under Additional Headers
+      i.	Name as Content-Type  , Value as application/json
+      ii.	Name as Authorization, Value as Bearer <APIToken>
+    e.	In Choose Output File or Folder -> select analytics/raw/system/magento/
+
+
 ## Parametrize the ADF Path
 
 
