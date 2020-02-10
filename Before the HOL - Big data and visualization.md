@@ -120,7 +120,7 @@ Create a new Azure Storage account that will be used to store Shopify and Magent
 
    
 
-   ![Complete the Azure storage account creation form with the options as outlined above.](media/azure-storage-create-blade.png)
+   ![Complete the Azure storage account creation form with the options as outlined above.](media/StorageAccountCreation.png)
 
 4. Select **Create** to finish and submit.
 
