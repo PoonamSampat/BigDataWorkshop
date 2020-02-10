@@ -43,13 +43,11 @@ Microsoft and the trademarks listed at https://www.microsoft.com/en-us/legal/int
   - [Exercise 4: Retrieve lab environment information and create Databricks cluster](#exercise-4-retrieve-lab-environment-information-and-create-databricks-cluster)
     - [Task 1 : Create an Azure Databricks cluster](#task-1-create-an-azure-databricks-cluster)
   - [Exercise 2: Load Data and Databricks Notebooks](#exercise-2-load-sample-data-and-databricks-notebooks)
-    - [Task 1: Upload the Sample Datasets](#task-1-upload-the-sample-datasets)
-    - [Task 3: Open Azure Databricks and complete lab notebooks](#task-3-open-azure-databricks-and-complete-lab-notebooks)
+    
+    - [Task 1: Open Azure Databricks and complete lab notebooks](#task-3-open-azure-databricks-and-complete-lab-notebooks)
   
-    - [Task 1: Create Azure Databricks Linked Service](#task-1-create-azure-databricks-linked-service)
-    - [Task 2: Trigger workflow](#task-2-trigger-workflow)
-  - [Exercise 6: Summarize data using Azure Databricks](#exercise-6-summarize-data-using-azure-databricks)
-    - [Task: Summarize delays by airport](#task-summarize-delays-by-airport)
+    - [Task 2: Create Azure Databricks Linked Service](#task-1-create-azure-databricks-linked-service)
+    - [Task 3: Trigger workflow](#task-2-trigger-workflow)
   - [Exercise 7: Visualizing in Power BI Desktop](#exercise-7-visualizing-in-power-bi-desktop)
     - [Task 1: Obtain the JDBC connection string to your Azure Databricks cluster](#task-1-obtain-the-jdbc-connection-string-to-your-azure-databricks-cluster)
     - [Task 2: Connect to Azure Databricks using Power BI Desktop](#task-2-connect-to-azure-databricks-using-power-bi-desktop)
@@ -108,7 +106,7 @@ You will need to have the Azure Storage account name and access key when you cre
 
 Duration: 20 minutes
 
-In this exercise, you will create a baseline environment for Azure Data Factory development for further operationalization of data movement and processing. You will create a Data Factory service, create a Linked Service and set up copy a
+In this exercise, you will create a baseline environment for Azure Data Factory development for further operationalization of data movement and processing. You will create a Data Factory service, create a Linked Service and set up copy from Magento and Shopify Data as the Source
 
 
 
@@ -141,76 +139,13 @@ https://docs.microsoft.com/en-us/azure/data-factory/connector-rest
 
    ![Fill in details and create the Linked Service](media/CopyActivity_Step3.png 'Linked Service Creation step 2')
 
+  
+9. On the Destination screen, select **+ Create new connection**.
 
-## Exercise 4: Develop a data factory pipeline for data movement
-
-Duration: 20 minutes
-
-In this exercise, you will create an Azure Data Factory pipeline to copy data using Magento and Shopify REST API to Azure Data Lake Gen 2. The goal of the exercise is to demonstrate data movement from REST API payload to Azure Storage (via the Integration Runtime).
-
-### Task 1: Create copy pipeline using the Copy Data Wizard
-
-1. Within the Azure Data Factory overview page, select **Copy Data**.
-
-   ![Select Copy Data from the overview page.](media/adf-copy-data-link.png 'Copy Data')
-
-2. In the Copy Data properties, enter the following:
-
-   - Task name: **CopyOnPrem2AzurePipeline**
-
-   - Task description: (Optional) **"This pipeline copies timesliced CSV files from on-premises C:\\Data to Azure Blob Storage as a continuous job."**
-
-   - Task cadence or Task schedule: **Select Run regularly on schedule**
-
-   - Trigger type: **Select Schedule**
-
-   - Start date time (UTC): **03/01/2018 12:00 am**
-
-   - Recurrence: Select **Month(s)**, and enter Every **1**
-
-   - Under the Advanced recurrence options, make sure you have a value of **0** in the textboxes for **Hours (UTC)** and **Minutes (UTC)**, otherwise it will fail later during Publishing.
-
-   - End: **No End**
-
-   ![Set the ADF pipeline copy activity properties by setting the Task Name to CopyOnPrem2AzurePipeline, adding a description, setting the Task cadence to Run regularly on a Monthly schedule, every 1 month.](media/adf-copy-data-properties.png 'Properties dialog box')
-
-3. Select **Next**.
-
-4. On the Source data store screen, select **+ Create new connection**.
-
-5. Scroll through the options and select **File System**, then select **Continue**.
-
-   ![Select File System, then Continue.](media/adf-copy-data-new-linked-service.png 'Select File System')
-
-6. In the New Linked Service form, enter the following:
-
-   - Name: **OnPremServer**
-
-   - Connect via integration runtime: **Select the Integration runtime created previously in this exercise**.
-
-   - Host: **C:\\Data**
-
-   - User name: **Use your machine's login username**.
-
-   - Password: **Use your machine's login password**.
-
-7. Select **Test connection** to verify you correctly entered the values. Finally, select **Create**.
-
-   ![On the Copy Data activity, specify File server share connection page, fields are set to the previously defined values.](media/adf-copy-data-linked-service-settings.png 'New Linked Service settings')
-
-8. On the Source data store page, select **Next**.
-
-   ![Select Next](media/adf-copy-data-source-next.png 'Select Next')
-
-
-11. Select **Next**.
-
-12. On the Destination screen, select **+ Create new connection**.
-
-13. Select **Azure Data Lake Gen 2** within the New Linked Service blade, then select **Continue**.
+10. Select **Azure Data Lake Gen 2** within the New Linked Service blade, then select **Continue**.
 
     
-14. On the New Linked Service (Azure Data Lake Gen2) account screen, enter the following and then select **Create**.
+11. On the New Linked Service (Azure Data Lake Gen2) account screen, enter the following and then select **Create**.
 
     - Name: **DataLakeStorageOutput**
 
@@ -222,15 +157,12 @@ In this exercise, you will create an Azure Data Factory pipeline to copy data us
 
     - Storage account name: **Select the data lake gen 2 storage account you provisioned in the before-the-lab section**.
 
-    ![On the Copy Data New Linked Service Azure Blob storage account page, fields are set to the previously defined settings.](media/adf-copy-data-blob-storage-linked.png 'New Linked Service Blob Storage')
-
+    
 15. On the Destination data store page, select **Next**.
 
 16. From the **Choose the output file or folder** tab, enter the following:
 
-    - Folder path: **sparkcontainer/FlightsAndWeather/{Year}/{Month}/**
-
-    - Filename: **FlightsAndWeather.csv**
+    - Folder path: **Mageneto/{Year}/{Month}/**
 
     - Year: Select **yyyy** from the drop down.
 
@@ -307,7 +239,7 @@ You have provisioned an Azure Databricks workspace, and now you need to create a
 
    - **Cluster Type**: Standard
 
-   - **Databricks Runtime Version**: Runtime: 5.5 (Scala 2.11, Spark 2.4.3) (**Note**: the runtime version may have **LTS** after the version. This is also a valid selection.)
+   - **Databricks Runtime Version**: Runtime: 6.2 0r 6.3  (**Note**: the runtime version may have **LTS** after the version. This is also a valid selection.)
 
    - **Python Version**: 3
 
@@ -321,42 +253,23 @@ You have provisioned an Azure Databricks workspace, and now you need to create a
 
    - **Workers**: 1
 
-   - **Spark Config**: Edit the Spark Config by entering the connection information for your Azure Storage account that you copied above in Task 1. This will allow your cluster to access the lab files. Enter the following:
-
-     `spark.hadoop.fs.azure.account.key.<STORAGE_ACCOUNT_NAME>.blob.core.windows.net <ACCESS_KEY>`, where <STORAGE_ACCOUNT_NAME> is your Azure Storage account name, and <ACCESS_KEY> is your storage access key.
-
-   **Example:** `spark.hadoop.fs.azure.account.key.bigdatalabstore.blob.core.windows.net HD+91Y77b+TezEu1lh9QXXU2Va6Cjg9bu0RRpb/KtBj8lWQa6jwyA0OGTDmSNVFr8iSlkytIFONEHLdl67Fgxg==`
-
-   ![Complete the form using the options as outlined above.](media/azure-databricks-create-cluster-form.png)
+      ![Complete the form using the options as outlined above.](media/azure-databricks-create-cluster-form.png)
 
 6. Select **Create Cluster**.
 
 ## Exercise 2: Load Sample Data and Databricks Notebooks
 
-Duration: 60 minutes
-
 In this exercise, you will load data from Data Lake Gen 2, perform transformations and write back to Data Lake Gen 2.
-
 
 4. Open your Azure Databricks workspace. Before continuing to the next step, verify that your new cluster is running. Do this by navigating to **Clusters** on the left-hand menu and ensuring that the state of your cluster is **Running**.
 
    ![The cluster is shown in the Running state.](media/azure-databricks-clusters-running.png 'Clusters')
 
-5. Select **Data** from the menu. Next, select **default** under Databases (if this does not appear, start your cluster). Finally, select **Add Data** above the Tables header.
-
-   ![From the Azure Databricks workspace, select Data, default database, then new table.](media/azure-databricks-create-tables.png 'Create new table')
-
-6. Select **Upload File** under Create New Table, and then select either select or drag-and-drop the FlightDelaysWithAirportCodes.csv file into the file area. Select **Create Table with UI**.
-
-   ![Create a new table using the FlightDelaysWithAirportCodes.csv file.](media/create-flight-delays-table-ui.png 'Create new table')
-
-7. Select your cluster to preview the table, then select **Preview Table**.
-
-### Task 3: Open Azure Databricks and complete lab notebooks
+### Task 1: Open Azure Databricks and complete lab notebooks
 
 1. Download the following file:
 
-   - [BigDataVis.dbc](lab-files/BigDataVis.dbc)
+   - [BigDataVis.dbc](lab-files/BigDataVis.dbc) <VIJI PLEASE PUT THE FILE PATH HERE FOR READING THE MAGENTO AND SHOPIFY DATA> 
 
 2. Within Azure Databricks, select **Workspace** on the menu, then **Users**, select your user, then select the down arrow on the top of your user workspace. Select **Import**.
 
@@ -366,7 +279,6 @@ In this exercise, you will load data from Data Lake Gen 2, perform transformatio
 
    ![Select import from file.](media/import-notebooks.png 'Import from file')
 
-4. After importing, expand the new **BigDataVis** folder.
 
 5. Before you begin, make sure you attach your cluster to the notebooks, using the dropdown. You will need to do this for each notebook you open. There are 5 notebooks included in the BigDataVis.dbc
 
@@ -376,15 +288,13 @@ In this exercise, you will load data from Data Lake Gen 2, perform transformatio
 
    ![The notebooks within the Exercise 2 folder are displayed.](media/azure-databricks-exercise-2.png 'Exercise 2 folder')
 
-7. Do NOT run the `Clean up` part of Notebook 3 (i.e. this command: `webservice.delete()`). You will need the URL of your Machine Learning Model exposed later in **Exercise 8: Deploy intelligent web app (Optional Lab)**. _Note: you could get this URL by updating your Notebook by adding this line `print(webservice.scoring_uri)` or by going to your Azure Machine Learning service workspace via the Azure portal and then to the "Deployments" blade._
+7. Do NOT run the `Clean up` part of Notebook 3 (i.e. this command: `webservice.delete()`). 
 
-8. Do NOT run any notebooks within the Exercise 5 or 6 folders. They will be discussed later in the lab.
-
-## Exercise 5: Operationalize Azure Databricks and Data Factory
+## Exercise 3: Operationalize Azure Databricks and Data Factory (Optional Task)
 
 Duration: 20 minutes
 
-In this exercise, you will extend the Data Factory to operationalize the scoring of data using the previously created machine learning model within an Azure Databricks notebook.
+In this exercise, you will extend the Data Factory to operationalize the Databricks Notebooks. 
 
 ### Task 1: Create Azure Databricks Linked Service
 
@@ -464,24 +374,16 @@ In this exercise, you will extend the Data Factory to operationalize the scoring
 4. Select **Monitor** in the menu. You will be able to see your pipeline activity in progress as well as the status of past runs.
 
    ![View your pipeline activity.](media/adf-ml-monitor.png 'Monitor')
+   
+   
 
-## Exercise 6: Summarize data using Azure Databricks
+## Exercise 4: Populating SnowFlakes suing the Databricks connector for SnowFlakes
 
-Duration: 20 minutes
+### Task 1: <VIJI>
 
-In this exercise, you will prepare a summary of flight delay data using Spark SQL.
+## Exercise 5: Visualizing in Power BI Desktop
 
-### Task: Summarize delays by airport
-
-1. Open your Azure Databricks workspace, expand the **Exercise 6** folder and open the final notebook called **01 explore Data**.
-
-   ![The Workspace is displayed with the Exercise 6 folder and Explore Data notebook highlighted.](media/azure-databricks-explore-data.png 'Databricks workspace')
-
-2. Execute each cell and follow the instructions in the notebook that explains each step.
-
-## Exercise 7: Visualizing in Power BI Desktop
-
-Duration: 20 minutes
+Duration: 20 minutes <VIJI>
 
 In this exercise, you will create visualizations in Power BI Desktop.
 
@@ -562,182 +464,6 @@ Before you begin, you must first obtain the JDBC connection string to your Azure
 
    ![Power BI Desktop fields.](media/pbi-desktop-fields.png 'Power BI Desktop Fields')
 
-2. From the Visualizations area, next to Fields, select the Globe icon to add a Map visualization to the report design surface.
-
-   ![On the Power BI Desktop Visualizations palette, the globe icon is selected.](media/image187.png 'Power BI Desktop Visualizatoins palette')
-
-3. With the Map visualization still selected, drag the **OriginLatLong** field to the **Location** field under Visualizations. Then Next, drag the **NumDelays** field to the **Size** field under Visualizations.
-
-   ![In the Fields column, the check boxes for NumDelays and OriginLatLong are selected. An arrow points from OriginLatLong in the Fields column, to OriginLatLong in the Visualization's Location field. A second arrow points from NumDelays in the Fields column, to NumDelays in the Visualization's Size field.](media/pbi-desktop-configure-map-vis.png 'Visualizations and Fields columns')
-
-4. You should now see a map that looks similar to the following (resize and zoom on your map if necessary):
-
-   ![On the Report design surface, a Map of the United States displays with varying-sized dots over different cities.](media/pbi-desktop-map-vis.png 'Report design surface')
-
-5. Unselect the Map visualization by selecting the white space next to the map in the report area.
-
-6. From the Visualizations area, select the **Stacked Column Chart** icon to add a bar chart visual to the report's design surface.
-
-   ![The stacked column chart icon is selected on the Visualizations palette.](media/image190.png 'Visualizations palette')
-
-7. With the Stacked Column Chart still selected, drag the **DayofMonth** field and drop it into the **Axis** field located under Visualizations.
-
-8. Next, drag the **NumDelays** field over, and drop it into the **Value** field.
-
-   ![In the Fields column, the check boxes for NumDelays and DayofMonth are selected. An arrow points from NumDelays in the Fields column, to NumDelays in the Visualization's Axis field. A second arrow points from DayofMonth in the Fields column, to DayofMonth in the Visualization's Value field.](media/pbi-desktop-configure-stacked-vis.png 'Visualizations and Fields columns')
-
-9. Grab the corner of the new Stacked Column Chart visual on the report design surface, and drag it out to make it as wide as the bottom of your report design surface. It should look something like the following.
-
-   ![On the Report Design Surface, under the map of the United States with dots, a stacked bar chart displays.](media/pbi-desktop-stacked-vis.png 'Report Design Surface')
-
-10. Unselect the Stacked Column Chart visual by selecting on the white space next to the map on the design surface.
-
-11. From the Visualizations area, select the Treemap icon to add this visualization to the report.
-
-    ![On the Visualizations palette, the Treemap icon is selected.](media/image193.png 'Visualizations palette')
-
-12. With the Treemap visualization selected, drag the **OriginAirportCode** field into the **Group** field under Visualizations.
-
-13. Next, drag the **NumDelays** field over, and drop it into the **Values** field.
-
-    ![In the Fields column, the check boxes for NumDelays and OriginAirportcode are selected. An arrow points from NumDelays in the Fields column, to NumDelays in the Visualization's Values field. A second arrow points from OriginAirportcode in the Fields column, to OriginAirportcode in the Visualization's Group field.](media/pbi-desktop-config-treemap-vis.png 'Visualizations and Fields columns')
-
-14. Grab the corner of the Treemap visual on the report design surface, and expand it to fill the area between the map and the side edge of the design surface. The report should now look similar to the following.
-
-    ![The Report design surface now displays the map of the United States with dots, a stacked bar chart, and a Treeview.](media/pbi-desktop-full-report.png 'Report design surface')
-
-15. You can cross filter any of the visualizations on the report by selecting one of the other visuals within the report, as shown below (This may take a few seconds to change, as the data is loaded).
-
-    ![The map on the Report design surface is now zoomed in on the northeast section of the United States, and the only dot on the map is on Chicago. In the Treeview, all cities except ORD are grayed out. In the stacked bar graph, each bar is now divided into a darker and a lighter color, with the darker color representing the airport.](media/pbi-desktop-full-report-filter.png 'Report design surface')
-
-16. You can save the report, by choosing Save from the File menu, and entering a name and location for the file.
-
-    ![The Power BI Save as window displays.](media/image197.png 'Power BI Save as window')
-
-## Exercise 8: Deploy intelligent web app (Optional Lab)
-
-Duration: 20 minutes
-
-In this exercise, you will deploy an intelligent web application to Azure from GitHub. This application leverages the operationalized machine learning model that was deployed in Exercise 1 to bring action-oriented insight to an already existing business process.
-
-> **Please note:** If you are running your lab in a hosted Azure environment and you do not have permissions to create a new Azure resource group, the automated deployment task (#2 below) may fail, even if you choose an existing resource group. The automated deployment will also fail if the user you are logged into the portal with is **not** a Service Administrator or a Co-Administrator. If this happens, we recommend that you install [Visual Studio 2017/2019 Community](https://visualstudio.microsoft.com/downloads/) or greater, then use the [Publish feature](https://docs.microsoft.com/visualstudio/deployment/quickstart-deploy-to-azure?view=vs-2019) to publish to a new Azure web app. You will then need to create and populate two new Application Settings as outlined in the tasks that follow: `mlUrl` and `weatherApiKey`. **Skip ahead to Task 3 for further instructions.**
-
-### Task 1: Register for a trial API account at darksky.net
-
-To retrieve the 7-day hourly weather forecast, you will use an API from darksky.net. There is a free trial version that provides you access to the API you need for this hands-on lab.
-
-1. Navigate to <https://darksky.net/dev>.
-
-2. Select TRY FOR FREE.
-
-   ![Select the TRY FOR FREE button on the Dark Sky dev page.](media/dark-sky-api-try-for-free.png 'Dark Sky dev page')
-
-3. Complete the Register form by providing your email address and a password. Select REGISTER.
-
-   ![Complete the registration form and select REGISTER.](media/dark-sky-register.png 'Registration form')
-
-4. Check your email account you used for registration. You should have a confirmation email from Dark Sky. Open the email and follow the confirmation link within to complete the registration process. When the welcome page loads, log in with your new account.
-
-   ![Dark Sky welcome page. Choose login to continue.](media/dark-sky-welcome.png 'Dark Sky welcome page')
-
-5. After logging in, you will be directed to the Your Account page. Take note of your **Secret Key** and copy it to a text editor such as Notepad for later. You will need this key to make API calls later in the lab.
-
-   ![The Dark Sky Your Account page - copy the Secret Key.](media/dark-sky-your-account.png 'Dark Sky Your Account page')
-
-6. To verify that your API Key is working, follow the link on the bottom of the page located underneath Sample API Call. You should see a JSON result that looks similar to the following:
-
-   ![Sample JSON result from Dark Sky API link.](media/dark-sky-sample-json-result.png 'JSON result from Dark Sky page')
-
-### Task 2: Deploy web app from GitHub
-
-1. Navigate to <https://github.com/Microsoft/MCW-Big-data-and-visualization/blob/master/Hands-on%20lab/lab-files/BigDataTravel/README.md> in your browser of choice, but where you are already authenticated to the Azure portal.
-
-2. Read through the README information on the GitHub page.
-
-3. Select **Deploy to Azure**.
-
-   ![Screenshot of the Deploy to Azure button.](media/deploy-to-azure-button.png 'Deploy to Azure button')
-
-4. On the following page, ensure the fields are populated correctly.
-
-   - Ensure the correct Directory and Subscription are selected.
-
-   - Select the Resource Group that you have been using throughout this lab.
-
-   - Either keep the default Site name, or provide one that is globally unique, and then choose a Site Location.
-
-   - Enter Weather API information.
-
-   - Finally, enter the ML URL. We got this from Azure databricks Notebook #3 in the Exercise 2 folder. If you cleaned your resources at the end of this Notebook #3, you will need to re-run it and keep the web service running to get its associated URL.
-
-   ![The web service URL is output from a cell within the Databricks notebook.](media/azure-databricks-web-url.png 'Web service URL')
-
-   ![Fields on the Deploy to Azure page are populated with the previously copied information.](media/azure-deployment-form.png 'Deploy to Azure page')
-
-5. Select **Next**, and on the following screen, select **Deploy**.
-
-6. The page should begin deploying your application while showing you a status of what is currently happening.
-
-   > **Note**: If you run into errors during the deployment that indicate a bad request or unauthorized, verify that the user you are logged into the portal with an account that is either a Service Administrator or a Co-Administrator. You won't have permissions to deploy the website otherwise.
-
-7. After a short time, the deployment will complete, and you will be presented with a link to your newly deployed web application. CTRL+Click to open it in a new tab.
-
-8. Try a few different combinations of origin, destination, date, and time in the application. The information you are shown is the result of both the ML API you published, as well as information retrieved from the DarkSky API.
-
-9. Congratulations! You have built and deployed an intelligent system to Azure.
-
-### Task 3: Manual deployment (optional)
-
-**If the automated deployment from GitHub in the previous task failed**, follow these instructions to manually deploy.
-
-1. Install [Visual Studio 2017/2019 Community](https://visualstudio.microsoft.com/downloads/) or greater. Make sure you select the **ASP.NET and web development** and **Azure development** workloads.
-
-   ![The Visual Studio workloads are displayed.](media/vs-workloads.png 'Visual Studio workloads')
-
-   > **Note**: If you are prompted to sign in to Visual Studio for the first time, enter the Azure account credentials you are using for this lab.
-
-2. In a web browser, navigate to the [Big data and visualization MCW repo](https://github.com/microsoft/MCW-Big-data-and-visualization).
-
-3. On the repo page, select **Clone or download**, then select **Download ZIP**.
-
-   ![Download .zip containing the repository](media/github-download-repo.png 'Download ZIP')
-
-4. Unzip the contents to your root hard drive (i.e. `C:\`). This will create a folder on your root drive named `C:\MCW-Big-data-and-visualization-master`.
-
-5. Open Windows Explorer and navigate to `C:\MCW-Big-data-and-visualization-master\Hands-on lab\lab-files\BigDataTravel\`, then open **BigDataTravel.sln**.
-
-6. In the Visual Studio Solution Explorer, right-click on the BigDataTravel project, then select **Publish...**.
-
-   ![The Publish menu item is highlighted in Visual Studio.](media/vs-publish-link.png 'Publish')
-
-7. In the Publish dialog, select the **App Service** publish target, select **Create New**, then choose **Publish**.
-
-   ![The App Service target is selected, Create New is selected, and the Publish button is highlighted.](media/vs-publish-target.png 'Pick a publish target')
-
-8. Enter the following into the App Service form that follows, then select **Create**:
-
-   - **Name**: Enter a unique value.
-   - **Subscription**: Choose the Azure subscription you are using for the lab.
-   - **Resource group**: Select the Azure resource group you are using for the lab.
-   - **Hosting Plan**: Select **New**, then create a new Hosting Plan in the same location and the **Free** size.
-   - **Application Insights**: Select **None**.
-
-   ![The form fields are completed using the previously described settings.](media/vs-app-service.png 'App Service dialog')
-
-9. After publishing is completed, open the new App Service located in your resource group in the [Azure portal](https://portal.azure.com).
-
-10. Select **Configuration** in the left-hand menu.
-
-    ![The Configuration menu item is highlighted.](media/app-service-configuration-link.png 'App Service')
-
-11. Create the two following **Application settings**, then select **Save**:
-
-    - **mlUrl**: Enter the Machine Learning URL. We got this from Azure databricks Notebook #3 in the Exercise 2 folder. If you cleaned your resources at the end of this Notebook #3, you will need to re-run it and keep the web service running to get its associated URL.
-    - **weatherApiKey**: Enter the Dark Sky API key.
-
-    ![The two new application settings are shown.](media/app-service-configuration.png 'Application settings')
-
-You will now be able to successfully navigate the web app.
 
 ## After the hands-on lab
 
