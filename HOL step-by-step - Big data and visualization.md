@@ -209,7 +209,19 @@ https://docs.microsoft.com/en-us/azure/data-factory/connector-rest
 
 ![Summary for ADF](media/ADFSummary.png 'Summary of Pipeline')
 
+## Publish and monitor the ADF Pipeline
+
+Click on Next and publish the pipeline.
+
+![Publish the pipeline](media/Publishpipeline.png 'Publish Pipeline')
+
+## Monitor the pipeline
+
+![Monitor the pipeline](media/MonitorPipeline.png 'Monitor Pipeline')
+
 ## Parametrize the ADF Path
+
+
 
 ## Exercise 4: Retrieve lab environment information and create Databricks cluster
 
