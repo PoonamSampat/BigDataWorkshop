@@ -154,29 +154,29 @@ https://docs.microsoft.com/en-us/azure/data-factory/connector-rest
 
 9.Enter below details and Click Create
 
-  a.	Give  name as ShopifyRest
+    a.	Give  name as ShopifyRest
   
-  b.	Select Integration Run time as AutoResolveIntegrationRuntime
+    b.	Select Integration Run time as AutoResolveIntegrationRuntime
   
-  c.	Base URL - <Base Shopify URL> similar to - https://<shop>.myshopify.com/admin/api/2020-01/
+    c.	Base URL - <Base Shopify URL> similar to - https://<shop>.myshopify.com/admin/api/2020-01/
   
-  d.	Authentication Type as Anonymous
+    d.	Authentication Type as Anonymous
   
  After specificying the above test the connection and click create the next screen required to enter the REST dataset properties.
   
 10.	Specify REST dataset properties
 
-  a.	Enter Relative URL as orders.json?limit=5&created_at_min=2020-02-13T00:00:00&created_at_max=2020-02-14T00:00:00&financial_status=any&status=any
+    a.	Enter Relative URL as orders.json?limit=5&created_at_min=2020-02-13T00:00:00&created_at_max=2020-02-14T00:00:00&financial_status=any&status=any
   
-  b.	Request Method – GET
+    b.	Request Method – GET
   
-  c.	Click New under Additional Headers
+    c.	Click New under Additional Headers
   
-    i.	Name as Content-Type  , Value as application/json
+      i.	Name as Content-Type  , Value as application/json
     
-    ii.	Name as X-Shopify-Access-Token , Value as <APIToken>
+      ii.	Name as X-Shopify-Access-Token , Value as <APIToken>
     
-  d.	Click Next
+    d.	Click Next
   
 
    
