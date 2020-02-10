@@ -100,6 +100,17 @@ You will need to have the Azure Storage account name and access key when you cre
 
    ![Select Access keys from menu - copy storage account name - copy key.](media/azure-storage-access-keys.png)
 
+## Exercise 2: Create folders within DataLake Gen 2 
+
+In the previous lab, you created a container called Analytics, we will add folders to store the raw data from Shopify and Magento.
+
+You can use Azure Storage Explorer, navigate to the specific container, Analytics and create folders as follows:
+
+a.	raw/system/magento/
+b.	raw/system/shopify/
+c.	raw/system/postgress/
+
+![Creating  folders to store the raw data](media/Addrawfolders.png)
 
 
 ## Exercise 2: Setup Azure Data Factory
