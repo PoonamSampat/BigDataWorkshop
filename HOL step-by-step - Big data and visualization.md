@@ -152,12 +152,31 @@ https://docs.microsoft.com/en-us/azure/data-factory/connector-rest
 
    ![Fill in details and create the Linked Service](media/CopyActivity_Step3.png 'Linked Service Creation step 2')
 
+9.Enter below details and Click Create
+
+  a.	Give  name as ShopifyRest
+  b.	Select Integration Run time as AutoResolveIntegrationRuntime
+  c.	Base URL - <Base Shopify URL> similar to - https://<shop>.myshopify.com/admin/api/2020-01/
+  d.	Authentication Type as Anonymous
   
+ After specificying the above test the connection and click create the next screen required to enter the REST dataset properties.
+  
+10.	Specify REST dataset properties
+
+  a.	Enter Relative URL as orders.json?limit=5&created_at_min=2020-02-13T00:00:00&created_at_max=2020-02-14T00:00:00&financial_status=any&status=any
+  b.	Request Method – GET
+  c.	Click New under Additional Headers
+  i.	Name as Content-Type  , Value as application/json
+  ii.	Name as X-Shopify-Access-Token , Value as <APIToken>
+  d.	Click Next
+
+   
 9. On the Destination screen, select **+ Create new connection**.
 
 10. Select **Azure Data Lake Gen 2** within the New Linked Service blade, then select **Continue**.
 
-    
+     ![Select Azure Data Lake Gen 2 for the Linked Service Type](media/DestinationDataSource.png 'Linked Service Creation')
+     
 11. On the New Linked Service (Azure Data Lake Gen2) account screen, enter the following and then select **Create**.
 
     - Name: **DataLakeStorageOutput**
@@ -170,52 +189,17 @@ https://docs.microsoft.com/en-us/azure/data-factory/connector-rest
 
     - Storage account name: **Select the data lake gen 2 storage account you provisioned in the before-the-lab section**.
 
+12.	Choose the output file or folder , Browse -> analytics/raw/system/shopify and filename as orders.json
     
 15. On the Destination data store page, select **Next**.
 
-16. From the **Choose the output file or folder** tab, enter the following:
+7.	File Format Settings, File Format as JSON, File pattern as Set of Objects
 
-    - Folder path: **Mageneto/{Year}/{Month}/**
+9.	Summary, Click Next
 
-    - Year: Select **yyyy** from the drop down.
 
-    - Month: Select **MM** from the drop down.
 
-    - Copy behavior: **Merge files**
-
-    - Select **Next**.
-
-      ![On the Copy Data Choose the output file or folder page, fields are set to the previously defined settings.](media/adf-copy-data-output-file-folder.png 'Choose the output file or folder page')
-
-17. On the File format settings screen, select the **Text format** file format, and check the **Add header to file** checkbox, then select **Next**.
-
-    ![On the Copy Data File format settings page, the check box for Add header to file is selected.](media/adf-copy-data-file-format-settings.png 'File format settings page')
-
-18. On the **Settings** screen, select **Skip incompatible rows** under Actions. Expand Advanced settings and set Degree of copy parallelism to **10**, then select **Next**.
-
-    ![Select Skip incompatible rows and set copy parallelism to 10.](media/adf-copy-data-settings.png 'Settings page')
-
-19. Review settings on the **Summary** tab, but **DO NOT choose Next**.
-
-    ![Summary page](media/adf-copy-data-summary.png 'Summary page')
-
-20. Scroll down on the summary page until you see the **Copy Settings** section. Select **Edit** next to **Copy Settings**.
-
-    ![Scroll down and select Edit within Copy Settings.](media/adf-copy-data-review-page.png 'Summary page')
-
-21. Change the following Copy settings:
-
-    - Retry: Set to **3**.
-
-    - Select **Save**.
-
-      ![Set retry to 3.](media/adf-copy-data-copy-settings.png 'Copy settings')
-
-22. After saving the Copy settings, select **Next** on the Summary tab.
-
-23. On the **Deployment** screen you will see a message that the deployment in is progress, and after a minute or two that the deployment completed. Select **Edit Pipeline** to close out of the wizard.
-
-    ![Select Edit Pipeline on the bottom of the page.](media/adf-copy-data-deployment.png 'Deployment page')
+![Summary for ADF](media/ADFSummary.png 'Summary of Pipeline')
 
 
 ## Exercise 1: Retrieve lab environment information and create Databricks cluster
