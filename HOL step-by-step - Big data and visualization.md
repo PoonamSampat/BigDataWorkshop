@@ -239,8 +239,44 @@ Click on Next and publish the pipeline.
 Parameterizing the URL and the output dataset location
 
 1. Go to the Pipeline that got created. Click on Author icon to view the Pipelines
+
 2.Click on the Pipeline that starts with CopyPipeline_
 ![Parameterize the pipeline](media/Copy_Pipeline_View.png 'Parameterize Pipeline1')
+
+3.	Click on Copy data Activity on the right Pane and go to Source tab. Click on Open next to Source dataset
+
+![Parameterize the copy](media/CopyParameterized.png 'Parameterize Pipeline2')
+
+4.	It will open source dataset. Go to Parameters tab and add two new parameters
+
+![Parameterize the copy update the parameters](media/CopyParameterdates.png 'Parameterize Pipeline2')
+
+  updatedFromtimestamp = @substring(subtractFromTime(pipeline().TriggerTime,1,'hour'), 0, 19)
+  updatedTotimestamp = @substring(pipeline().TriggerTime, 0, 19)
+  
+5. Go to Connections tab, in Relative URL click on Add dynamic content as 
+  
+  @concat('orders.json?        created_at_min=',dataset().updatedFromtimestamp,'&created_at_max=',dataset().updatedTotimestamp,'&financial_status=any&status=any')
+  
+  ![Parameterize the connection](media/ConnectionParametersADF.png 'Parameterize Pipeline3')
+  
+ 6. Click on CopyPipeline tab and there will be two parameters on the Source tab
+ 
+  ![Parameterize the connection](media/DataSetPropADF.png 'Parameterize Pipeline4')
+  
+ Provide the value as
+updatedFromtimestamp = @substring(subtractFromTime(pipeline().TriggerTime,1,'hour'), 0, 19)
+updatedTotimestamp = @substring(pipeline().TriggerTime, 0, 19)
+
+7. Click on Validate All to save the changes
+
+8. Next Go to Sink tab and Click on Open next to Sink dataset
+
+9.	Go to Parameters tab and add following parameters
+
+![Parameters for trigerring the pipeline](media/ParametersADF.png 'Parameterize Pipeline5')
+
+
 
 ## Exercise 4: Retrieve lab environment information and create Databricks cluster
 
