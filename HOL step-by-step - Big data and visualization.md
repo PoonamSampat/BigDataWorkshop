@@ -414,7 +414,7 @@ In this exercise, you will create visualizations in Power BI Desktop. Open Power
 
 ![Snowflake Data](media/powerbi_02_snowflake.png 'Snowflake Data') 
 
-3.	Enter the details and click OK
+3.	Enter the details and click OK 
 
 ![Snowflake Connection](media/powerbi_03_snowflake_connection.png 'Snowflake Connection') 
 
