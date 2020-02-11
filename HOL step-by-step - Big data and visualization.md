@@ -31,7 +31,7 @@ Microsoft and the trademarks listed at https://www.microsoft.com/en-us/legal/int
   - [Overview](#overview)
   - [Solution architecture](#solution-architecture)
   - [Requirements](#requirements)
-  -  [Exercise 1: Get Storage Account Details]
+  - [Exercise 1: Get Storage Account Details]
       - [Task 1: Retrieve Azure Storage account information and Subscription Id](#task-1-retrieve-azure-storage-account-information-and-subscription-id)
   - [Exercise 2: Setup Azure Data Factory](#exercise-2-setup-azure-data-factory)
     
