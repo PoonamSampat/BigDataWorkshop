@@ -241,6 +241,7 @@ Parameterizing the URL and the output dataset location
 1. Go to the Pipeline that got created. Click on Author icon to view the Pipelines
 2.Click on the Pipeline that starts with CopyPipeline_
 ![Parameterize the pipeline](media/Copy_Pipeline_View.png 'Parameterize Pipeline1')
+3.	Click on Copy data Activity on the right Pane and go to Source tab. Click on Open next to Source dataset
 
 ## Exercise 4: Retrieve lab environment information and create Databricks cluster
 
