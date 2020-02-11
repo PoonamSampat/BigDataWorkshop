@@ -400,7 +400,7 @@ In this exercise, you will load data from Data Lake Gen 2, perform transformatio
 2.	Enter User name and password
 3.	Click on WORKSHOP database to see WORKSHOP_CHANNEL_SALES table
   
-  ![Snowflake Data](media/powerbi_01_get_data 'Snowflake Data') 
+  ![Snowflake Data](media/snowflake_03_view_data.png 'Snowflake Data') 
   
 
 ## Exercise 4: Visualizing in Power BI Desktop
@@ -408,7 +408,7 @@ In this exercise, you will load data from Data Lake Gen 2, perform transformatio
 In this exercise, you will create visualizations in Power BI Desktop. Open PowerBI desktop
 1.	Select Get DataSelect Get Data
 
-![Get Data](media/snowflake_03_view_data.png 'Get Data') 
+![Get Data](media/powerbi_01_get_data 'Get Data') 
 
 2.	Select Snowflake
 
