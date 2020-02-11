@@ -243,6 +243,34 @@ Parameterizing the URL and the output dataset location
 ![Parameterize the pipeline1](media/Parameterize_01_Copy_Pipeline_View.png 'Parameterize Pipeline1')
 3.	Click on Copy data Activity on the right Pane and go to Source tab. Click on Open next to Source dataset
 ![Parameterize the pipeline2](media/Parameterize_02_Copy_Data_Activity.png 'Parameterize Pipeline2')
+4.	It will open source dataset. Go to Parameters tab and add two new parameters
+![Parameterize the pipeline4](media/Parameterize_04_Copy_Pipeline_Parameters.png 'Parameterize Pipeline4')
+updatedFromtimestamp = @substring(subtractFromTime(pipeline().TriggerTime,1,'hour'), 0, 19)
+updatedTotimestamp = @substring(pipeline().TriggerTime, 0, 19)
+5.	Go to Connections tab, in Relative URL click on Add dynamic content as
+@concat('orders.json?created_at_min=',dataset().updatedFromtimestamp,'&created_at_max=',dataset().updatedTotimestamp,'&financial_status=any&status=any'). Click Finish
+![Parameterize the pipeline5](media/Parameterize_05_Copy_Pipeline_Relative_URL.png 'Parameterize Pipeline5')
+6.	Click on CopyPipeline tab and there will be two parameters on the Source tab
+![Parameterize the pipeline6](media/Parameterize_06_Copy_Pipeline_Parameters.png 'Parameterize Pipeline6')
+Give the value as
+updatedFromtimestamp = @substring(subtractFromTime(pipeline().TriggerTime,1,'hour'), 0, 19)
+updatedTotimestamp = @substring(pipeline().TriggerTime, 0, 19)
+7.	Click on Validate All to save the changes
+8.	Next Go to Sink tab and Click on Open next to Sink dataset
+9.	Go to Parameters tab and add following parameters
+![Parameterize the pipeline9](media/Parameterize_09_Copy_Pipeline_Sink_Parameters.png 'Parameterize Pipeline9')
+date = @substring(pipeline().TriggerTime, 0, 10)
+timestamp = @substring(pipeline().TriggerTime, 0, 19)
+10.	Go to Connections tab and click on Add Dynamic content below for directory in File Path and add @concat('raw/system/shopify/',dataset().type_of_data,'/',dataset().date)
+11.	Similarly Add Dynamic Content for File name as @concat(dataset().type_of_data,'_',dataset().timestamp,'.json')
+![Parameterize the pipeline11](media/Parameterize_11_Copy_Pipeline_Sink_Connection.png 'Parameterize Pipeline11')
+12.	Click on CopyPipeline tab and there will be three parameters on the Sink tab
+type_of_data = orders
+date = @substring(pipeline().TriggerTime, 0, 10)
+timestamp = @substring(pipeline().TriggerTime, 0, 19)
+![Parameterize the pipeline12](media/Parameterize_12_Copy_Pipeline_Sink.png 'Parameterize Pipeline12')
+13.	Click on Validate All to save the changes. Click on Publish All to Publish the changes and run the pipeline (Add Trigger -> Trigger Now)
+14.	Go to Monitor tab to view the Pipeline execution
 
 ## Exercise 4: Retrieve lab environment information and create Databricks cluster
 
