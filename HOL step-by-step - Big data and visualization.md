@@ -276,6 +276,28 @@ updatedTotimestamp = @substring(pipeline().TriggerTime, 0, 19)
 
 ![Parameters for trigerring the pipeline](media/ParametersADF.png 'Parameterize Pipeline5')
 
+ date = @substring(pipeline().TriggerTime, 0, 10)
+ timestamp = @substring(pipeline().TriggerTime, 0, 19)
+
+10. Go to Connections tab and click on Add Dynamic content below for directory in File Path and add the following:
+
+  @concat('raw/system/shopify/',dataset().type_of_data,'/',dataset().date)
+
+11.Similarly Add Dynamic Content for File name as @concat(dataset().type_of_data,'_',dataset().timestamp,'.json')
+
+  ![Dynamic Content for file name](media/FilePathADF.png 'Parameterize Pipeline6')
+
+12.	Click on CopyPipeline tab and there will be three parameters on the Sink tab
+
+  type_of_data = orders
+  date = @substring(pipeline().TriggerTime, 0, 10)
+  timestamp = @substring(pipeline().TriggerTime, 0, 19)
+  
+  ![Sink parameterization](media/FilePathADF.png 'Parameterize Pipeline7')
+  
+14.	Click on Validate All to save the changes. Click on Publish All to Publish the changes and run the pipeline (Add Trigger -> Trigger Now)
+ 
+15.	Go to Monitor tab to view the Pipeline execution
 
 
 ## Exercise 4: Retrieve lab environment information and create Databricks cluster
