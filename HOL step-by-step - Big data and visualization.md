@@ -364,11 +364,12 @@ In this exercise, you will load data from Data Lake Gen 2, perform transformatio
 
 1. Download the following file:
 
-   - [BigDataVis.dbc](lab-files/BigDataVis.dbc) <VIJI PLEASE PUT THE FILE PATH HERE FOR READING THE MAGENTO AND SHOPIFY DATA> 
+   - [Magento.html](lab-files/Magento.html) 
+   - [Shopify.html](lab-files/Shopify.html) 
 
 2. Within Azure Databricks, select **Workspace** on the menu, then **Users**, select your user, then select the down arrow on the top of your user workspace. Select **Import**.
 
-   ![Screenshot showing selecting import within the user workspace.](media/select-import-in-user-workspace.png 'Import')
+   ![Screenshot showing selecting import within the user workspace.](media/DataBricksImportWorkshopNotebook.png 'Import')
 
 3. Within the Import Notebooks dialog, select Import from: file, then drag-and-drop the file or browse to upload it.
 
@@ -383,7 +384,32 @@ In this exercise, you will load data from Data Lake Gen 2, perform transformatio
 
    ![The notebooks within the Exercise 2 folder are displayed.](media/azure-databricks-exercise-2.png 'Exercise 2 folder')
 
-7. Do NOT run the `Clean up` part of Notebook 3 (i.e. this command: `webservice.delete()`). 
+7. Click on the Shopify Notebook to open it on the Databricks Cluster.
+
+    i.Read from ADLS
+    In Read from ADLS,  replace <containername>, <accountname>, <folder> in Cell5 and replace it with actual name
+  
+    ii.Also <FILL IN THE ACCOUNT KEY> in spark.conf.set
+
+    iii.Snowflake Processing
+    Provide the Snowflake details by replacing xxxxx with actual value
+    
+    Run cell one by one or Run All to finish all steps.
+    
+ 8. Click on the Magento Notebook to open it on the Databricks Cluster.
+
+    i.Read from ADLS
+    In Read from ADLS,  replace <containername>, <accountname>, <folder> in Cell5 and replace it with actual name
+  
+    ii.Also <FILL IN THE ACCOUNT KEY> in spark.conf.set
+
+    iii.Snowflake Processing
+    Provide the Snowflake details by replacing xxxxx with actual value
+    
+    Run cell one by one or Run All to finish all steps.
+    
+    
+
 
 ## Exercise 3: Operationalize Azure Databricks and Data Factory (Optional Task)
 
@@ -474,13 +500,52 @@ In this exercise, you will extend the Data Factory to operationalize the Databri
 
 ## Exercise 4: Populating SnowFlakes using the Databricks connector for SnowFlakes
 
-### Task 1: <VIJI>
+### Task 1: 
 
-## Exercise 5: Visualizing in Power BI Desktop
+The Magento and Shopify notebooks have SnowFlake connectors, which are used to connect to snowflakes to populate the transformed data on to SnowFlake.
 
-Duration: 20 minutes <VIJI>
+Once the data is inserted the same can be verified by logging on to the SnowFlake portal.
+
+  1.	Login to Snowflake https://<fillin>.azure.snowflakecomputing.com/console
+  2.	Enter User name and password
+  3.	Click on WORKSHOP database to see WORKSHOP_CHANNEL_SALES table
+
+  ![View your snowflake table](media/SnowFlake.png 'Monitor')
+
+
+## Exercise 5: Visualizing in Power BI Desktop using SnowFlake
+
+Duration: 20 minutes 
 
 In this exercise, you will create visualizations in Power BI Desktop.
+
+### Task 1: Open the desktop version of Power BI, select the Get Data Option as illustrated below:
+
+  ![Get data from Power BI](media/PowerBIGetData.png 'Monitor')
+  
+### Task 2: Select SnowFlake as the datasource:
+
+![Select snowflake from Power BI](media/PowerBISnowFlake.png 'Monitor')
+
+### Task 3: Enter the SnowFlake connection details:
+
+![Enter the snowflake connection details in  Power BI](media/PowerBISnowFlakeConnection.png 'Monitor')
+
+### Task 4: Enter the user name and password:
+
+![Enter the snowflake connection details in  Power BI](media/PowerBIPasswordDetails.png 'Monitor')
+
+
+### Task 5: Select the WORKSHOP_CHANNEL_SALES  to load the data:
+
+![Select the SelectSalesTablePBI in Power BI](media/SelectSalesTablePBI.png 'Monitor')
+  
+  
+
+
+
+
+## Exercise 6: Visualizing in Power BI Desktop using Azure Databricks - Optional
 
 ### Task 1: Obtain the JDBC connection string to your Azure Databricks cluster - Optional
 
