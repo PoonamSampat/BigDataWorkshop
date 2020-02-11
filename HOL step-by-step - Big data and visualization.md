@@ -33,7 +33,9 @@ Microsoft and the trademarks listed at https://www.microsoft.com/en-us/legal/int
   - [Requirements](#requirements)
   
   - [Exercise 1: Get Storage Account Details]
+  
       - [Task 1: Retrieve Azure Storage account information and Subscription Id](#task-1-retrieve-azure-storage-account-information-and-subscription-id)
+      
   - [Exercise 2: Setup Azure Data Factory](#exercise-2-setup-azure-data-factory)
     
     - [Task 1: Configure Azure Data Factory](#task-1-configure-azure-data-factory)
