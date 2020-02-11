@@ -380,11 +380,7 @@ In this exercise, you will load data from Data Lake Gen 2, perform transformatio
 
    ![Select your cluster to attach it to the notebook.](media/attach-cluster-to-notebook.png 'Attach cluster to notebook')
 
-6. Run each cell of the notebooks located in the **Exercise 2** folder (01, 02 and 03) individually by selecting within the cell, then entering **Ctrl+Enter** on your keyboard. Pay close attention to the instructions within the notebook so you understand each step of the data preparation process.
-
-   ![The notebooks within the Exercise 2 folder are displayed.](media/azure-databricks-exercise-2.png 'Exercise 2 folder')
-
-7. Click on the Shopify Notebook to open it on the Databricks Cluster.
+6. Click on the Shopify Notebook to open it on the Databricks Cluster.
 
     i.Read from ADLS
     In Read from ADLS,  replace <containername>, <accountname>, <folder> in Cell5 and replace it with actual name
@@ -396,7 +392,7 @@ In this exercise, you will load data from Data Lake Gen 2, perform transformatio
     
     Run cell one by one or Run All to finish all steps.
     
- 8. Click on the Magento Notebook to open it on the Databricks Cluster.
+ 7. Click on the Magento Notebook to open it on the Databricks Cluster.
 
     i.Read from ADLS
     In Read from ADLS,  replace <containername>, <accountname>, <folder> in Cell5 and replace it with actual name
