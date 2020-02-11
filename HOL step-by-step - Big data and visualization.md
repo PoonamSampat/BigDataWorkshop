@@ -246,7 +246,7 @@ The workshop covers two ways to achieve the same.
   2. Parametrizing the dates as part of running the pipeline.
  
 
-1. Go to the Pipeline that got created. Click on Author icon to view the Pipelines
+Go to the Pipeline that got created. Click on Author icon to view the Pipelines
 
 2.Click on the Pipeline that starts with CopyPipeline_
 ![Parameterize the pipeline](media/Copy_Pipeline_View.png 'Parameterize Pipeline1')
