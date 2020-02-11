@@ -239,7 +239,7 @@ Click on Next and publish the pipeline.
 
 ## Parametrize the ADF Path
 
-Parameterizing the URL and the output dataset location
+Parameterizing the URL and the output dataset location, the usecase being getting the pipeline to run every hour with current - one hour time range and get orders from Magento and Shopify.
 
 1. Go to the Pipeline that got created. Click on Author icon to view the Pipelines
 
@@ -352,6 +352,8 @@ You have provisioned an Azure Databricks workspace, and now you need to create a
    - **Workers**: 1
 
       ![Complete the form using the options as outlined above.](media/azure-databricks-create-cluster-form.png)
+      
+      Note :Spark Config, for this workshop we are setting it as part of the Databricks notebooks, this step can be avoided.
 
 6. Select **Create Cluster**.
 
