@@ -34,7 +34,7 @@ Microsoft and the trademarks listed at https://www.microsoft.com/en-us/legal/int
   
   - [Exercise 1: Get Storage Account Details]
   
-      - [Task 1: Retrieve Azure Storage account information and Subscription Id](#task-1-retrieve-azure-storage-account-information-and-subscription-id)
+     - [Task 1: Retrieve Azure Storage account information and Subscription Id](#task-1-retrieve-azure-storage-account-information-and-subscription-id)
       
   - [Exercise 2: Setup Azure Data Factory](#exercise-2-setup-azure-data-factory)
     
@@ -241,6 +241,10 @@ Click on Next and publish the pipeline.
 
 Parameterizing the URL and the output dataset location, the usecase being getting the pipeline to run every hour with current - one hour time range and get orders from Magento and Shopify.
 
+The workshop covers two ways to achieve the same.
+ 1. Parametrizing the dates as part of the query string.
+ 2. Parametrizing the dates as part of running the pipeline.
+
 1. Go to the Pipeline that got created. Click on Author icon to view the Pipelines
 
 2.Click on the Pipeline that starts with CopyPipeline_
@@ -250,20 +254,20 @@ Parameterizing the URL and the output dataset location, the usecase being gettin
 
 ![Parameterize the copy](media/CopyParameterized.png 'Parameterize Pipeline2')
 
-4.	It will open source dataset. Go to Parameters tab and add two new parameters
+4.	It will open source dataset. Go to Parameters tab and add two new parameters , this will get the dynamic dates.
 
 ![Parameterize the copy update the parameters](media/CopyParameterdates.png 'Parameterize Pipeline2')
 
   updatedFromtimestamp = @substring(subtractFromTime(pipeline().TriggerTime,1,'hour'), 0, 19)
   updatedTotimestamp = @substring(pipeline().TriggerTime, 0, 19)
   
-5. Go to Connections tab, in Relative URL click on Add dynamic content as 
+5. Go to Connections tab, in Relative URL click on Add dynamic content as follows, this constructs the Query String using previous dynamic dates.
   
   @concat('orders.json?        created_at_min=',dataset().updatedFromtimestamp,'&created_at_max=',dataset().updatedTotimestamp,'&financial_status=any&status=any')
   
   ![Parameterize the connection](media/ConnectionParametersADF.png 'Parameterize Pipeline3')
   
- 6. Click on CopyPipeline tab and there will be two parameters on the Source tab
+ 6. Alternate option is to pass the From and To Parameters part of the pipeline. Click on CopyPipeline tab and there will be two parameters on the Source tab
  
   ![Parameterize the connection](media/DataSetPropADF.png 'Parameterize Pipeline4')
   
