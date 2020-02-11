@@ -317,7 +317,7 @@ You have provisioned an Azure Databricks workspace, and now you need to create a
 
    ![Select Clusters from menu then select Create Cluster.](media/azure-databricks-create-cluster-button.png)
 
-5. On the Create New Cluster form, provide the following:
+5. On the Create New Cluster form, provide the following: You can skip Advanced Options and this will be handled in the Notebook for the sake of workshop. 
 
    - **Cluster Name**: lab
 
@@ -373,7 +373,7 @@ In this exercise, you will load data from Data Lake Gen 2, perform transformatio
 
 ![Click on Shopify.](media/databricks_06_Run_Shopify.png 'Click on Shopify')
 
-7. In Read from ADLS section, replace <containername>, <accountname>, <folder> in Cell5 and replace it with actual name. Also <FILL IN THE ACCOUNT KEY> in spark.conf.set
+7. In Read from ADLS section, replace containername, accountname, folder in Cell5 and replace it with actual name. Also FILL IN THE ACCOUNT KEY in spark.conf.set
   
 8. To add snowflake python connector, from Workspace pane, click on Down arrow and Import
 
@@ -387,14 +387,44 @@ In this exercise, you will load data from Data Lake Gen 2, perform transformatio
 
 ![Create Library.](media/databricks_10_Create_Library.png 'Create Library') 
 
-11. In Snowflake Processing section, Provide the Snowflake details by replacing xxxxx with actual value 
+11. In Snowflake Processing section, Provide the Snowflake details by replacing xxxxx with actual value. This will load the data into Snowflake using Snowflake connector.
 
   Run each cell of the notebooks located in the **Shopify_Analysis** notebook individually by selecting within the cell, then entering    **Ctrl+Enter** on your keyboard. Pay close attention to the instructions within the notebook so you understand each step of the data  preparation process.
 
 12. Similarly do for Magento Notebook
 13. Do NOT run the `Clean up` part of Notebook 3 (i.e. this command: `webservice.delete()`). 
 
-## Exercise 3: Operationalize Azure Databricks and Data Factory (Optional Task)
+## Exercise 3: Viewing data in SnowFlake loaded using the Databricks connector for SnowFlake
+
+1.	Login to Snowflake https://<fillin>.azure.snowflakecomputing.com/console
+2.	Enter User name and password
+3.	Click on WORKSHOP database to see WORKSHOP_CHANNEL_SALES table
+  
+  ![Snowflake Data](media/powerbi_01_get_data 'Snowflake Data') 
+  
+
+## Exercise 4: Visualizing in Power BI Desktop
+
+In this exercise, you will create visualizations in Power BI Desktop. Open PowerBI desktop
+1.	Select Get DataSelect Get Data
+
+![Get Data](media/snowflake_03_view_data.png 'Get Data') 
+
+2.	Select Snowflake
+
+![Snowflake Data](media/powerbi_02_snowflake.png 'Snowflake Data') 
+
+3.	Enter the details and click OK
+
+![Snowflake Connection](media/powerbi_03_snowflake_connection.png 'Snowflake Connection') 
+
+4.  Enter Snowflake Username and Password
+
+5.	Select WORKSHOP_CHANNEL_SALES to load the data
+
+![Snowflake Load](media/powerbi_04_snowflake_load.png 'Snowflake Load') 
+
+## Exercise 5: Operationalize Azure Databricks and Data Factory (Optional Task)
 
 Duration: 20 minutes
 
@@ -479,17 +509,6 @@ In this exercise, you will extend the Data Factory to operationalize the Databri
 
    ![View your pipeline activity.](media/adf-ml-monitor.png 'Monitor')
    
-   
-
-## Exercise 4: Populating SnowFlakes using the Databricks connector for SnowFlakes
-
-### Task 1: <VIJI>
-
-## Exercise 5: Visualizing in Power BI Desktop
-
-Duration: 20 minutes <VIJI>
-
-In this exercise, you will create visualizations in Power BI Desktop.
 
 ### Task 1: Obtain the JDBC connection string to your Azure Databricks cluster - Optional
 
