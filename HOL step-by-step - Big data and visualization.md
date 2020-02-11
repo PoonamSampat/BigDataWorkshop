@@ -379,7 +379,7 @@ In this exercise, you will load data from Data Lake Gen 2, perform transformatio
    ![Select import from file.](media/import-notebooks.png 'Import from file')
 
 
-5. Before you begin, make sure you attach your cluster to the notebooks, using the dropdown. You will need to do this for each notebook you open. There are 5 notebooks included in the BigDataVis.dbc
+5. Before you begin, make sure you attach your cluster to the notebooks, using the dropdown. You will need to do this for each notebook you open. 
 
    ![Select your cluster to attach it to the notebook.](media/attach-cluster-to-notebook.png 'Attach cluster to notebook')
 
@@ -389,8 +389,18 @@ In this exercise, you will load data from Data Lake Gen 2, perform transformatio
     In Read from ADLS,  replace <containername>, <accountname>, <folder> in Cell5 and replace it with actual name
   
     ii.Also <FILL IN THE ACCOUNT KEY> in spark.conf.set
+  
+7. To add snowflake python connector, from Workspace pane, click on Down arrow and Import
 
-    iii.Snowflake Processing
+   ![Snowflake Connector.](media/databricks_08_Snowflake_Connector.png 'Snowflake Connector') 
+
+9. Click on Click here 
+
+  ![Click here Library.](media/databricks_09_Click_here.png 'Library') 
+
+10. Click on PyPI and enter snowflake-connector-python. Click on Create and select Install on all Clusters
+  
+11. Snowflake Processing
     Provide the Snowflake details by replacing xxxxx with actual value
     
     Run cell one by one or Run All to finish all steps.
