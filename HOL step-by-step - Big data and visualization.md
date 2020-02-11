@@ -239,35 +239,52 @@ Click on Next and publish the pipeline.
 Parameterizing the URL and the output dataset location
 
 1. Go to the Pipeline that got created. Click on Author icon to view the Pipelines
+
 2.Click on the Pipeline that starts with CopyPipeline_
 ![Parameterize the pipeline1](media/Parameterize_01_Copy_Pipeline_View.png 'Parameterize Pipeline1')
+
 3.	Click on Copy data Activity on the right Pane and go to Source tab. Click on Open next to Source dataset
+
 ![Parameterize the pipeline2](media/Parameterize_02_Copy_Data_Activity.png 'Parameterize Pipeline2')
+
 4.	It will open source dataset. Go to Parameters tab and add two new parameters
 ![Parameterize the pipeline4](media/Parameterize_04_Copy_Pipeline_Parameters.png 'Parameterize Pipeline4')
+
 updatedFromtimestamp = @substring(subtractFromTime(pipeline().TriggerTime,1,'hour'), 0, 19)
 updatedTotimestamp = @substring(pipeline().TriggerTime, 0, 19)
+
 5.	Go to Connections tab, in Relative URL click on Add dynamic content as
+
 @concat('orders.json?created_at_min=',dataset().updatedFromtimestamp,'&created_at_max=',dataset().updatedTotimestamp,'&financial_status=any&status=any'). Click Finish
+
 ![Parameterize the pipeline5](media/Parameterize_05_Copy_Pipeline_Relative_URL.png 'Parameterize Pipeline5')
+
 6.	Click on CopyPipeline tab and there will be two parameters on the Source tab
+
 ![Parameterize the pipeline6](media/Parameterize_06_Copy_Pipeline_Parameters.png 'Parameterize Pipeline6')
+
 Give the value as
 updatedFromtimestamp = @substring(subtractFromTime(pipeline().TriggerTime,1,'hour'), 0, 19)
 updatedTotimestamp = @substring(pipeline().TriggerTime, 0, 19)
+
 7.	Click on Validate All to save the changes
 8.	Next Go to Sink tab and Click on Open next to Sink dataset
 9.	Go to Parameters tab and add following parameters
+
 ![Parameterize the pipeline9](media/Parameterize_09_Copy_Pipeline_Sink_Parameters.png 'Parameterize Pipeline9')
 date = @substring(pipeline().TriggerTime, 0, 10)
 timestamp = @substring(pipeline().TriggerTime, 0, 19)
+
 10.	Go to Connections tab and click on Add Dynamic content below for directory in File Path and add @concat('raw/system/shopify/',dataset().type_of_data,'/',dataset().date)
 11.	Similarly Add Dynamic Content for File name as @concat(dataset().type_of_data,'_',dataset().timestamp,'.json')
+
 ![Parameterize the pipeline11](media/Parameterize_11_Copy_Pipeline_Sink_Connection.png 'Parameterize Pipeline11')
+
 12.	Click on CopyPipeline tab and there will be three parameters on the Sink tab
 type_of_data = orders
 date = @substring(pipeline().TriggerTime, 0, 10)
 timestamp = @substring(pipeline().TriggerTime, 0, 19)
+
 ![Parameterize the pipeline12](media/Parameterize_12_Copy_Pipeline_Sink.png 'Parameterize Pipeline12')
 13.	Click on Validate All to save the changes. Click on Publish All to Publish the changes and run the pipeline (Add Trigger -> Trigger Now)
 14.	Go to Monitor tab to view the Pipeline execution
@@ -336,7 +353,7 @@ In this exercise, you will load data from Data Lake Gen 2, perform transformatio
 
 1. Download the following file:
 
-   - [BigDataVis.dbc](lab-files/BigDataVis.dbc) <VIJI PLEASE PUT THE FILE PATH HERE FOR READING THE MAGENTO AND SHOPIFY DATA> 
+   - Import the Notebooks sent via email for Shopify and Magento
 
 2. Within Azure Databricks, select **Workspace** on the menu, then **Users**, select your user, then select the down arrow on the top of your user workspace. Select **Import**.
 
@@ -347,15 +364,35 @@ In this exercise, you will load data from Data Lake Gen 2, perform transformatio
    ![Select import from file.](media/import-notebooks.png 'Import from file')
 
 
-5. Before you begin, make sure you attach your cluster to the notebooks, using the dropdown. You will need to do this for each notebook you open. There are 5 notebooks included in the BigDataVis.dbc
+5. Before you begin, make sure you attach your cluster to the notebooks, using the dropdown. You will need to do this for each notebook you open. There are 2 notebooks included in the email
 
    ![Select your cluster to attach it to the notebook.](media/attach-cluster-to-notebook.png 'Attach cluster to notebook')
+   
 
-6. Run each cell of the notebooks located in the **Exercise 2** folder (01, 02 and 03) individually by selecting within the cell, then entering **Ctrl+Enter** on your keyboard. Pay close attention to the instructions within the notebook so you understand each step of the data preparation process.
+6. Click on Shopify_Analysis Notebook
 
-   ![The notebooks within the Exercise 2 folder are displayed.](media/azure-databricks-exercise-2.png 'Exercise 2 folder')
+![Click on Shopify.](media/databricks_06_Run_Shopify.png 'Click on Shopify')
 
-7. Do NOT run the `Clean up` part of Notebook 3 (i.e. this command: `webservice.delete()`). 
+7. In Read from ADLS section, replace <containername>, <accountname>, <folder> in Cell5 and replace it with actual name. Also <FILL IN THE ACCOUNT KEY> in spark.conf.set
+  
+8. To add snowflake python connector, from Workspace pane, click on Down arrow and Import
+
+![Snowflake Connector.](media/databricks_08_Snowflake_Connector.png 'Snowflake Connector') 
+
+9. Click on Click here 
+
+![Click here Library.](media/databricks_09_Click_here.png 'Library') 
+
+10. Click on PyPI and enter snowflake-connector-python. Click on Create and select Install on all Clusters
+
+![Create Library.](media/databricks_10_Create_Library.png 'Create Library') 
+
+11. In Snowflake Processing section, Provide the Snowflake details by replacing xxxxx with actual value 
+
+  Run each cell of the notebooks located in the **Shopify_Analysis** notebook individually by selecting within the cell, then entering    **Ctrl+Enter** on your keyboard. Pay close attention to the instructions within the notebook so you understand each step of the data  preparation process.
+
+12. Similarly do for Magento Notebook
+13. Do NOT run the `Clean up` part of Notebook 3 (i.e. this command: `webservice.delete()`). 
 
 ## Exercise 3: Operationalize Azure Databricks and Data Factory (Optional Task)
 
