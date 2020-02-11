@@ -408,7 +408,7 @@ In this exercise, you will load data from Data Lake Gen 2, perform transformatio
 In this exercise, you will create visualizations in Power BI Desktop. Open PowerBI desktop
 1.	Select Get DataSelect Get Data
 
-![Get Data](media/powerbi_01_get_data 'Get Data') 
+![Get Data](media/powerbi_01_get_data.png 'Get Data') 
 
 2.	Select Snowflake
 
