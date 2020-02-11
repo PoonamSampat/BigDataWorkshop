@@ -242,8 +242,9 @@ Click on Next and publish the pipeline.
 Parameterizing the URL and the output dataset location, the usecase being getting the pipeline to run every hour with current - one hour time range and get orders from Magento and Shopify.
 
 The workshop covers two ways to achieve the same.
- 1. Parametrizing the dates as part of the query string.
- 2. Parametrizing the dates as part of running the pipeline.
+  1. Parametrizing the dates as part of the query string.
+  2. Parametrizing the dates as part of running the pipeline.
+ 
 
 1. Go to the Pipeline that got created. Click on Author icon to view the Pipelines
 
