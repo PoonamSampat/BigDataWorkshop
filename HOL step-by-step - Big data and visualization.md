@@ -379,7 +379,7 @@ You have provisioned an Azure Databricks workspace, and now you need to create a
 
       ![Complete the form using the options as outlined above.](media/azure-databricks-create-cluster-form.png)
       
-      Note :Spark Config, for this workshop we are setting it as part of the Databricks notebooks, this step can be avoided.
+      Note :Spark Config, for this workshop we are setting it as part of the Databricks notebooks, this step can be skipped.
 
 6. Select **Create Cluster**.
 
