@@ -140,9 +140,9 @@ In this exercise, you will create a baseline environment for Azure Data Factory 
 
 5. A new page will open in another tab or new window. Within the Azure Data Factory site, select **Author** (the pencil icon) on the menu.
 
-   ![Select Author from the menu.](media/adf-home-author-link.png 'Author link on ADF home page')
+   ![Select Author from the menu.](media/copy_pipeline_05.png 'Author link on ADF home page')
 
-6. Select the copy activity
+6. Select the copy activity, Enter the task name as shopify_copy and select Run Once. Click Next. Click on +Create New Connection
 
    ![Select Copy Data, then select the Services and apps tab, and select Create New Connection.](./media/CopyActivity_Step1.png 'Steps to create a new Integation Runtime connection')
 
@@ -287,13 +287,13 @@ updatedTotimestamp = @substring(pipeline().TriggerTime, 0, 19)
  date = @substring(pipeline().TriggerTime, 0, 10)
  timestamp = @substring(pipeline().TriggerTime, 0, 19)
 
-10. Go to Connections tab and click on Add Dynamic content below for directory in File Path and add the following:
+10. Go to Connections tab, give the directory (first box) as container name (analytics) and click on Add Dynamic content below for directory in File Path and add the following:
 
   @concat('raw/system/shopify/',dataset().type_of_data,'/',dataset().date)
 
 11.Similarly Add Dynamic Content for File name as @concat(dataset().type_of_data,'_',dataset().timestamp,'.json')
 
-  ![Dynamic Content for file name](media/FilePathADF.png 'Parameterize Pipeline6')
+  ![Dynamic Content for file name](media/Parameterize_11_Copy_Pipeline_Sink_Connection.png 'Parameterize Pipeline6')
 
 12.	Click on CopyPipeline tab and there will be three parameters on the Sink tab
 
