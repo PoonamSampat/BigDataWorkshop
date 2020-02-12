@@ -303,10 +303,31 @@ updatedTotimestamp = @substring(pipeline().TriggerTime, 0, 19)
   
   ![Sink parameterization](media/FilePathADF.png 'Parameterize Pipeline7')
   
+  This is basically to create the folder and file structure as below dynamically
+  
+  ![Sink Folder parameterization](media/Parameterize_12_Folder_Structure.png 'Parameterize Pipeline12a') 
+  
+  ![Sink Folder parameterization](media/Parameterize_12b_File_Structure.png 'Parameterize Pipeline12b')  
+  
 14.	Click on Validate All to save the changes. Click on Publish All to Publish the changes and run the pipeline (Add Trigger -> Trigger Now)
  
 15.	Go to Monitor tab to view the Pipeline execution
 
+## Scheduling the Pipeline
+
+1.	From the Pipeline, Click on Add Trigger -> New/Add Trigger
+
+  ![Schedule Pipeline01](media/Schedule_Pipeline_01.png 'Schedule Pipeline01')   
+  
+2.	From Choose Trigger -> Click on +New. 
+  a.	Give the Name for Trigger as Hourly_Trigger
+  b.	Type as Schedule
+  c.	Start Date as needed
+  d.	Recurrence Every 1 Hour and Click on OK.
+
+  ![Schedule Pipeline02](media/Schedule_Pipeline_02.png 'Schedule Pipeline02')
+  
+3.	Go to Monitor tab to view the Pipeline execution
 
 ## Exercise 4: Retrieve lab environment information and create Databricks cluster
 
@@ -375,8 +396,27 @@ In this exercise, you will load data from Data Lake Gen 2, perform transformatio
 1. Download the following file:
 
    - [Magento.html](lab-files/Magento.html) 
-   - [Shopify.html](lab-files/Shopify.html) 
+     
+     Magento Notebook: Performs the following
+     1.Read the Magento JSON data ingested into Raw Zone by ADF
+     2.Convert the semi structured JSON data into Structured data
+     3.Extract the required fields
+     4.Extract the Shipped Date, Delivered Date, Refund Date and Captured Date depending on the Comments column 
+     5.If initial load, load the data directly into Snowflake
+     6.In case of incremental load, perform Merge operation into Snowflake to perform de-duplication
 
+   - [Shopify.html](lab-files/Shopify.html) 
+   
+    Shopify Notebook: Performs the following
+    
+    1.	Read the Shopify JSON data ingested into Raw Zone by ADF
+    2.	Convert the semi structured JSON data into Structured data
+    3.	Extract the required fields
+    4.	Extract the corresponding refund quantity and amount for items from refunds array if any
+    5.	If initial load, load the data directly into Snowflake
+    6.	In case of incremental load, perform Merge operation into Snowflake to perform de-duplication
+
+        
 2. Within Azure Databricks, select **Workspace** on the menu, then **Users**, select your user, then select the down arrow on the top of your user workspace. Select **Import**.
 
    ![Screenshot showing selecting import within the user workspace.](media/DataBricksImportWorkshopNotebook.png 'Import')
@@ -415,9 +455,9 @@ In this exercise, you will load data from Data Lake Gen 2, perform transformatio
  7. Click on the Magento Notebook to open it on the Databricks Cluster.
 
     i.Read from ADLS
-    In Read from ADLS,  replace <containername>, <accountname>, <folder> in Cell5 and replace it with actual name
+    In Read from ADLS,  replace containername, accountname, folder in Cell5 and replace it with actual name
   
-    ii.Also <FILL IN THE ACCOUNT KEY> in spark.conf.set
+    ii.Also FILL IN THE ACCOUNT KEY in spark.conf.set
 
     iii.Snowflake Processing
     Provide the Snowflake details by replacing xxxxx with actual value
@@ -514,7 +554,7 @@ In this exercise, you will extend the Data Factory to operationalize the Databri
    
    
 
-## Exercise 4: Populating SnowFlakes using the Databricks connector for SnowFlakes
+## Exercise 4: Populating SnowFlake using the Databricks connector for SnowFlake
 
 ### Task 1: 
 
@@ -556,9 +596,11 @@ In this exercise, you will create visualizations in Power BI Desktop.
 
 ![Select the SelectSalesTablePBI in Power BI](media/SelectSalesTablePBI.png 'Monitor')
   
-  
+### Task 6: Charts created using CHANNEL_SALES data in Snowflake:
 
+![Create Charts - Chart1](media/powerbi_05_create_charts.png 'ChartA')
 
+![Create Charts - Chart2](media/powerbi_05a_create_charts.png 'ChartB')
 
 
 ## Exercise 6: Visualizing in Power BI Desktop using Azure Databricks - Optional
