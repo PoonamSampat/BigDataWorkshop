@@ -301,7 +301,7 @@ updatedTotimestamp = @substring(pipeline().TriggerTime, 0, 19)
   date = @substring(pipeline().TriggerTime, 0, 10)
   timestamp = @substring(pipeline().TriggerTime, 0, 19)
   
-  ![Sink parameterization](media/FilePathADF.png 'Parameterize Pipeline7')
+  ![Sink parameterization](media/Parameterize_12_Copy_Pipeline_Sink.png 'Parameterize Pipeline12')
   
   This is basically to create the folder and file structure as below dynamically
   
