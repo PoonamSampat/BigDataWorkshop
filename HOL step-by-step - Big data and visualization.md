@@ -433,9 +433,9 @@ In this exercise, you will load data from Data Lake Gen 2, perform transformatio
 6. Click on the Shopify Notebook to open it on the Databricks Cluster.
 
     i.Read from ADLS
-    In Read from ADLS,  replace <containername>, <accountname>, <folder> in Cell5 and replace it with actual name
+    In Read from ADLS,  replace containername, accountname, folder in Cell5 and replace it with actual name
   
-    ii.Also <FILL IN THE ACCOUNT KEY> in spark.conf.set
+    ii.Also FILL IN THE ACCOUNT KEY in spark.conf.set
   
 7. To add snowflake python connector, from Workspace pane, click on Down arrow and Import
 
@@ -446,6 +446,8 @@ In this exercise, you will load data from Data Lake Gen 2, perform transformatio
   ![Click here Library.](media/databricks_09_Click_here.png 'Library') 
 
 10. Click on PyPI and enter snowflake-connector-python. Click on Create and select Install on all Clusters
+
+![PyPI Library.](media/databricks_10_Create_Library.png 'Library') 
   
 11. Snowflake Processing
     Provide the Snowflake details by replacing xxxxx with actual value
