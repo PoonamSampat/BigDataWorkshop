@@ -138,7 +138,7 @@ In this exercise, you will create a baseline environment for Azure Data Factory 
 
    ![In the Azure Data Factory blade, under Actions, the Author & Monitor option is selected.](./media/adf-author-monitor.png 'Author & Monitor')
 
-5. A new page will open in another tab or new window. Within the Azure Data Factory site, select **Author** (the pencil icon) on the menu.
+5. A new page will open in another tab or new window. Within the Azure Data Factory site, select **Copy Data** on the menu.
 
    ![Select Author from the menu.](media/copy_pipeline_05.png 'Author link on ADF home page')
 
