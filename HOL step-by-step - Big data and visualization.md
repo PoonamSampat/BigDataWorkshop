@@ -395,7 +395,7 @@ In this exercise, you will load data from Data Lake Gen 2, perform transformatio
 
 1. Download the following file:
 
-   - [Magento.html](lab-files/Magento.html) 
+   - [Magento.html](lab-files/WORKSHOP_MAGENTO_ANALYSIS.html) 
      
       Magento Notebook: Performs the following
     
@@ -407,7 +407,7 @@ In this exercise, you will load data from Data Lake Gen 2, perform transformatio
       6. In case of incremental load, perform Merge operation into Snowflake to perform de-duplication
     
 
-   - [Shopify.html](lab-files/Shopify.html) 
+   - [Shopify.html](lab-files/WORKSHOP_SHOPIFY_ANALYSIS.html) 
    
       Shopify Notebook: Performs the following
     
