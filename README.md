@@ -41,7 +41,6 @@ By the end of the lab, you will be able to show an end-to-end solution, leveragi
 - SnowFlake (Optional) can use a SQL Store to store structured data.
 
 
-## Related references
 
--
+
 
