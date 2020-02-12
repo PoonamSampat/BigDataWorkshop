@@ -397,25 +397,26 @@ In this exercise, you will load data from Data Lake Gen 2, perform transformatio
 
    - [Magento.html](lab-files/Magento.html) 
      
-    Magento Notebook: Performs the following
+      Magento Notebook: Performs the following
     
-    1. Read the Magento JSON data ingested into Raw Zone by ADF
-    2. Convert the semi structured JSON data into Structured data
-    3. Extract the required fields
-    4. Extract the Shipped Date, Delivered Date, Refund Date and Captured Date depending on the Comments column 
-    5. If initial load, load the data directly into Snowflake
-    6. In case of incremental load, perform Merge operation into Snowflake to perform de-duplication
+      1. Read the Magento JSON data ingested into Raw Zone by ADF
+      2. Convert the semi structured JSON data into Structured data
+      3. Extract the required fields
+      4. Extract the Shipped Date, Delivered Date, Refund Date and Captured Date depending on the Comments column 
+      5. If initial load, load the data directly into Snowflake
+      6. In case of incremental load, perform Merge operation into Snowflake to perform de-duplication
+    
 
    - [Shopify.html](lab-files/Shopify.html) 
    
-    Shopify Notebook: Performs the following
+      Shopify Notebook: Performs the following
     
-    1.	Read the Shopify JSON data ingested into Raw Zone by ADF
-    2.	Convert the semi structured JSON data into Structured data
-    3.	Extract the required fields
-    4.	Extract the corresponding refund quantity and amount for items from refunds array if any
-    5.	If initial load, load the data directly into Snowflake
-    6.	In case of incremental load, perform Merge operation into Snowflake to perform de-duplication
+      1.	Read the Shopify JSON data ingested into Raw Zone by ADF
+      2.	Convert the semi structured JSON data into Structured data
+      3.	Extract the required fields
+      4.	Extract the corresponding refund quantity and amount for items from refunds array if any
+      5.	If initial load, load the data directly into Snowflake
+      6.	In case of incremental load, perform Merge operation into Snowflake to perform de-duplication
 
         
 2. Within Azure Databricks, select **Workspace** on the menu, then **Users**, select your user, then select the down arrow on the top of your user workspace. Select **Import**.
